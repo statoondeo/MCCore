@@ -9,6 +9,7 @@ public class PlayableContainerComponent : BaseComponent, IPlayableContainerCompo
 
 	public IPlayableComponentProxy RegisterPlayable(IPlayableComponentProxy playable)
 	{
+		playable.Attach(Entity);
 		Playables.Add(playable.Name, playable);
 		return (playable);
 	}

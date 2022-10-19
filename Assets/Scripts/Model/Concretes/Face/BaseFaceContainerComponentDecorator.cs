@@ -7,6 +7,7 @@ public abstract class BaseFaceContainerComponentDecorator : BaseComponentDecorat
 
 	protected BaseFaceContainerComponentDecorator(IActivable owner) : base(owner) { }
 
+	public bool CanFlipTo(string faceName) => Inner.CanFlipTo(faceName);
 	public void FlipTo(string faceName) => Inner.FlipTo(faceName);
 	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face) => Inner.RegisterFace(face);
 }

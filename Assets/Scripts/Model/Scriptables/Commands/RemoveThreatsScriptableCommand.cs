@@ -3,5 +3,5 @@
 [CreateAssetMenu()]
 public class RemoveThreatsScriptableCommand : ScriptableCommand
 {
-	public override ICommand Create() => new RemoveThreatsCommand();
+	public override ICommand Create() => new ContainerCommand(new RemoveThreatsCommand());
 }

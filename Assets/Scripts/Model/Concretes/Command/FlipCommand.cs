@@ -1,21 +1,20 @@
-﻿using System;
-using UnityEngine;
-
-public class FlipCommand : BaseCommand
+﻿public class FlipCommand : BaseCommand
 {
-	protected Action<string> Action;
-	protected string Parameter;
+	protected IFaceContainerComponentProxy FaceContainerContainerComponent;
+	protected string TargetFaceName;
 
-	public FlipCommand(Action<string> action, string parameter) : base(CommandType.FLIP)
+	public FlipCommand(IFaceContainerComponentProxy faceContainerContainerComponent, string targetFaceName) : base(CommandType.FLIP)
 	{
-		Action = action;
-		Parameter = parameter;
+		FaceContainerContainerComponent = faceContainerContainerComponent;
+		TargetFaceName = targetFaceName;
 	}
-
+	public override bool CanExecute() => FaceContainerContainerComponent.ActiveFace != FaceContainerContainerComponent.Faces[TargetFaceName];
 	public override void Execute()
 	{
-		Debug.Log("Flip");
-		Action.Invoke(Parameter);
-		base.Execute();
+		if (CanExecute())
+		{
+			FaceContainerContainerComponent.FlipTo(TargetFaceName);
+			base.Execute();
+		}
 	}
 }

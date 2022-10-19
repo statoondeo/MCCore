@@ -31,7 +31,7 @@
 	}
 	public override void Execute()
 	{
-		for (int i = 0; i < Commands.Length; i++) Commands[i].Execute();
+		for (int i = 0; i < Commands.Length; i++) ServiceLocator.Get<IStackService>().EnqueueCommand(Commands[i]);
 		base.Execute();
 	}
 }

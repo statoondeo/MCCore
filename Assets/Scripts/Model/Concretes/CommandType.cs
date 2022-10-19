@@ -17,4 +17,6 @@
 	public static readonly string SPEND_RESOURCE = "SPEND_RESOURCE";
 	public static readonly string STUN = "STUN";
 	public static readonly string FLIP = "FLIP";
+	public static readonly string MOVE = "MOVE";
+	public static readonly string PLAY = "PLAY";
 }

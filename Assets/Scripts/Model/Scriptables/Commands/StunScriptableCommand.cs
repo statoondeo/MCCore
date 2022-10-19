@@ -3,5 +3,5 @@
 [CreateAssetMenu()]
 public class StunScriptableCommand : ScriptableCommand
 {
-	public override ICommand Create() => new StunCommand();
+	public override ICommand Create() => new ContainerCommand(new StunCommand());
 }

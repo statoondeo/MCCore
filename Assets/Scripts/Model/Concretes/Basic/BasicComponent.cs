@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 public class BasicComponent : BaseComponent, IBasicComponent
 {
@@ -7,6 +7,11 @@ public class BasicComponent : BaseComponent, IBasicComponent
 
 	public BasicComponent() : base() { }
 
-	public void MoveTo(string zoneId) => Location = zoneId;
+	public bool CanMoveTo(string zoneId) => Location != zoneId;
+	public void MoveTo(string zoneId)
+	{
+		Debug.Log("Moved");
+		Location = zoneId;
+	}
 	public void SetOrder(int order) { }
 }

@@ -4,11 +4,17 @@ public class FaceContainerComponentProxy : BaseComponentProxy<IFaceContainerComp
 {
 	public IFaceComponentProxy ActiveFace => Wrapped.ActiveFace;
 	public IDictionary<string, IFaceComponentProxy> Faces => Wrapped.Faces;
+	public IDictionary<string, ICommand> FlipCommands {get; protected set;}
 
-	public FaceContainerComponentProxy() : base(new FaceContainerComponent()) { }
+	public FaceContainerComponentProxy() : base(new FaceContainerComponent()) => FlipCommands = new	Dictionary<string, ICommand>();
 
+	public bool CanFlipTo(string faceName) => Wrapped.CanFlipTo(faceName);
 	public void FlipTo(string faceName) => Wrapped.FlipTo(faceName);
-	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face) => Wrapped.RegisterFace(face);
+	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face)
+	{
+		FlipCommands.Add(face.Name, new FlipCommand(this, face.Name));
+		return (Wrapped.RegisterFace(face));
+	}
 
 	public override string ToString() => ActiveFace.ToString();
 }

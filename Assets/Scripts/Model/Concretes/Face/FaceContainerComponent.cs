@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 {
@@ -9,11 +10,12 @@ public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 
 	protected void ChangeFace(string faceName) => ActiveFace = Faces[faceName];
 
+	public bool CanFlipTo(string faceName) => ActiveFace != Faces[faceName];
 	public void FlipTo(string faceName)
 	{
-		if (ActiveFace == Faces[faceName]) return;
-		ICommand flipCommand = new ContainerCommand(new FlipCommand(ChangeFace, faceName));
-		while(!flipCommand.Done) flipCommand.Execute();
+		if (!CanFlipTo(faceName)) return;
+		Debug.Log("Flip");
+		ActiveFace = Faces[faceName];
 	}
 	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face)
 	{

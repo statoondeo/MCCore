@@ -9,6 +9,7 @@
 	public override void Resolve()
 	{
 		Command.Execute();
+		while (!Command.Done) Command.Execute();
 		RemoveEntity();
 	}
 }
