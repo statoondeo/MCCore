@@ -14,7 +14,7 @@
 		{
 			entity = ServiceLocator.Get<IZoneService>().Get(Location);
 			tankZone = entity.GetComponent<ITankComponentProxy>();
-			tankZone.Remove(entity);
+			tankZone.Remove(Entity);
 		}
 
 		entity = ServiceLocator.Get<IZoneService>().Get(zoneId);

@@ -19,3 +19,4 @@ MonoBehaviour:
   CardType: {fileID: 11400000, guid: 8c6d5f64c27f9b24da92ea67d2e301e1, type: 2}
   Classification: {fileID: 11400000, guid: 5016cd9aacb17b44d85cdfda51d9b703, type: 2}
   Image: {fileID: 21300000, guid: ce809c9d726a558458170f3a3deb5ce8, type: 3}
+  Back: {fileID: 11400000, guid: 5980be2ddf802cb4faec138e42923906, type: 2}

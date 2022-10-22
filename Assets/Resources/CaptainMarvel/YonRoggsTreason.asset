@@ -18,4 +18,5 @@ MonoBehaviour:
   Unique: 0
   CardType: {fileID: 11400000, guid: f49ffd664a97b0b41a2e9fb752ebe855, type: 2}
   Classification: {fileID: 11400000, guid: 6732d85de0fe8a84a8805e31e9d94d48, type: 2}
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: a6072b06f772e7246a374d90848d6cef, type: 3}
+  Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}

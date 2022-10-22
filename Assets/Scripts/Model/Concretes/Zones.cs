@@ -11,4 +11,12 @@
 	public static readonly string VILLAIN_EXIL = "VILLAIN_EXIL";
 	public static readonly string BOOST = "BOOST";
 	public static readonly string ENCOUNTER = "ENCOUNTER";
+
+	public static bool IsLocation(this IBasicComponentProxy basicComponent, string location) => basicComponent.Location == location;
+	public static bool IsOneOfLocation(this IBasicComponentProxy basicComponent, params string[] locations)
+	{
+		for (int i = 0; i < locations.Length; i++)
+			if (basicComponent.IsLocation(locations[i])) return (true);
+		return (false);
+	}
 }

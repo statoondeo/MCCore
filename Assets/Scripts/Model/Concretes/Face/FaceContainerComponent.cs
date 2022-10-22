@@ -10,7 +10,7 @@ public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 
 	protected void ChangeFace(string faceName) => ActiveFace = Faces[faceName];
 
-	public bool CanFlipTo(string faceName) => ActiveFace != Faces[faceName];
+	public bool CanFlipTo(string faceName) => Faces.ContainsKey(faceName) && ActiveFace != Faces[faceName];
 	public void FlipTo(string faceName)
 	{
 		if (!CanFlipTo(faceName)) return;

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518372f9091c389408bc10ff40d471ee, type: 3}
+  m_Name: CatainMarvelDeck
+  m_EditorClassIdentifier: 
+  Cards:
+  - {fileID: 11400000, guid: a4500b13f73c36e4f8a8ac6855ca83cc, type: 2}
+  - {fileID: 11400000, guid: e4cd0f153b568fa4d9f4a58901677722, type: 2}
+  - {fileID: 11400000, guid: e4cd0f153b568fa4d9f4a58901677722, type: 2}
+  - {fileID: 11400000, guid: e4cd0f153b568fa4d9f4a58901677722, type: 2}
+  - {fileID: 11400000, guid: 815b36fab744810459fe951d63b56541, type: 2}
+  - {fileID: 11400000, guid: 815b36fab744810459fe951d63b56541, type: 2}
+  - {fileID: 11400000, guid: 815b36fab744810459fe951d63b56541, type: 2}
+  - {fileID: 11400000, guid: cec1d19e78bc58b419d0c1f7c454d420, type: 2}
+  - {fileID: 11400000, guid: cec1d19e78bc58b419d0c1f7c454d420, type: 2}
+  - {fileID: 11400000, guid: 0c6b2d5d3a6875d4f8cb36a5c55cd8d2, type: 2}
+  - {fileID: 11400000, guid: 07c73b44899339c47ba07a6c193cf6a1, type: 2}
+  - {fileID: 11400000, guid: 89f6da83257e5db45afd326e0829e678, type: 2}
+  - {fileID: 11400000, guid: 89f6da83257e5db45afd326e0829e678, type: 2}
+  - {fileID: 11400000, guid: cab8a8ea52a48574fa9d1b1eb9f9a8ad, type: 2}
+  - {fileID: 11400000, guid: cab8a8ea52a48574fa9d1b1eb9f9a8ad, type: 2}
+  - {fileID: 11400000, guid: 551547e2b1b32294c838969dc93d5d43, type: 2}
+  - {fileID: 11400000, guid: 79f9714870988c4479d1e7389c96666a, type: 2}
+  - {fileID: 11400000, guid: 69df19d74a8e35845a3625cf4405e7d9, type: 2}
+  - {fileID: 11400000, guid: 06ccc5269185c814fb4b40a0a81bda22, type: 2}
+  - {fileID: 11400000, guid: 06ccc5269185c814fb4b40a0a81bda22, type: 2}
+  - {fileID: 11400000, guid: af57141f2f08ade4e88b1483838ceb1d, type: 2}
+  - {fileID: 11400000, guid: 4b96623c26155f74e910d84c2fc105c2, type: 2}

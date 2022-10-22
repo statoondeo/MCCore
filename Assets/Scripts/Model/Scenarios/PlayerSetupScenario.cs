@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerSetupScenario : BaseScenario
@@ -15,94 +17,49 @@ public class PlayerSetupScenario : BaseScenario
 			// Create player deck
 			IList<IEntity> deckList = deck.Create();
 			IEntityService entityService = ServiceLocator.Get<IEntityService>();
-			for (int i = 0; i < deckList.Count; i++) entityService.Add(deckList[i]);
+			for (int i = 0; i < deckList.Count; i++)
+			{
+				IEntity card = entityService.Add(deckList[i]);
+				card.GetComponent<IBasicComponentProxy>().MoveTo(Zones.PLAYER_DECK);
+				card.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.VERSO);
+			}
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Select Identity
-			IEntity hero = null;
-			IList<IEntity> entities = ServiceLocator.Get<IEntityService>().Get();
-			ICardType alterEgoCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ALTER_EGO);
-			ICardType heroCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.HERO);
-			for (int i = 0; i < entities.Count; i++)
-			{
-				IEntity currentEntity;
-				IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
-				currentEntity = null == faceContainer ? entities[i] : faceContainer.ActiveFace.Face;
-				ICardComponentProxy cardComponentProxy = currentEntity.GetComponent<ICardComponentProxy>();
-				if (cardComponentProxy.IsOneOfCardType(alterEgoCardType, heroCardType))
-				{
-					hero = entities[i];
-					break;
-				}
-			}
+			IEntity hero = GetFirst(IdentityFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
+
+			// Flip to Alter-ego face
+			hero.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.ALTER_EGO);
 
 			// Move to Battlefield
 			IBasicComponentProxy basicComponent = hero.GetComponent<IBasicComponentProxy>();
 			ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.BATTLEFIELD]);
-
-			// Flip to Alter-ego face
-			IFaceContainerComponentProxy faceContainerComponentProxy = hero.GetComponent<IFaceContainerComponentProxy>();
-			faceContainerComponentProxy.FlipTo(CardTypes.ALTER_EGO);
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Set aside obligations
-			ICardType obligationCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.OBLIGATION);
-			IList<IEntity> entities = ServiceLocator.Get<IEntityService>().Get();
-			for (int i = 0; i < entities.Count; i++)
+			IList<IEntity> cards = GetAll(ObligationFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
+			for (int i = 0; i < cards.Count; i++)
 			{
-				IEntity currentEntity;
-				IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
-				currentEntity = null == faceContainer ? entities[i] : faceContainer.ActiveFace.Face;
-				ICardComponentProxy cardComponentProxy = currentEntity.GetComponent<ICardComponentProxy>();
-				if (cardComponentProxy.IsCardType(obligationCardType))
-				{
-					IBasicComponentProxy basicComponent = entities[i].GetComponent<IBasicComponentProxy>();
-					ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.PLAYER_EXIL]);
-				}
+				IBasicComponentProxy basicComponent = cards[i].GetComponent<IBasicComponentProxy>();
+				ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.PLAYER_EXIL]);
 			}
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Set aside nemesis cards
-			IClassification nemesisClassification = ServiceLocator.Get<IClassificationService>().Get(Classifications.NEMESIS);
-			IList<IEntity> entities = ServiceLocator.Get<IEntityService>().Get();
-			for (int i = 0; i < entities.Count; i++)
+			IList<IEntity> cards = GetAll(NemesisFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
+			for (int i = 0; i < cards.Count; i++)
 			{
-				IEntity currentEntity;
-				IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
-				currentEntity = null == faceContainer ? entities[i] : faceContainer.ActiveFace.Face;
-				ICardComponentProxy cardComponentProxy = currentEntity.GetComponent<ICardComponentProxy>();
-				if (cardComponentProxy.IsClassification(nemesisClassification))
-				{
-					IBasicComponentProxy basicComponent = entities[i].GetComponent<IBasicComponentProxy>();
-					ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.PLAYER_EXIL]);
-				}
+				IBasicComponentProxy basicComponent = cards[i].GetComponent<IBasicComponentProxy>();
+				ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.PLAYER_EXIL]);
 			}
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
-			// Deck feeding
-			IList<IEntity> entities = ServiceLocator.Get<IEntityService>().Get();
-			for (int i = 0; i < entities.Count; i++)
-			{
-				IBasicComponentProxy basicComponentProxy = entities[i].GetComponent<IBasicComponentProxy>();
-				if (string.IsNullOrWhiteSpace(basicComponentProxy.Location)) basicComponentProxy.MoveTo(Zones.PLAYER_DECK);
-			}
-
 			// Shuffle deck
-			IEntity playerDeck = ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK);
-			ITankComponentProxy tankComponentProxy = playerDeck.GetComponent<ITankComponentProxy>();
-			IList<IEntity> cards = tankComponentProxy.Get();
-			for (int i = 0; i < cards.Count; i++)
-			{
-				int j = Random.Range(i, cards.Count);
-				IBasicComponentProxy cardiBasicComponentProxy = cards[i].GetComponent<IBasicComponentProxy>();
-				IBasicComponentProxy cardjBasicComponentProxy = cards[j].GetComponent<IBasicComponentProxy>();
-				cardiBasicComponentProxy.SetOrder(j);
-				cardjBasicComponentProxy.SetOrder(i);
-			}
+			ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<IShuffleComponentProxy>().Shuffle();
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
@@ -111,9 +68,63 @@ public class PlayerSetupScenario : BaseScenario
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
-			// Deck feeding
-			IList<IEntity> entities = ServiceLocator.Get<IEntityService>().Get();
-			for (int i = 0; i < entities.Count; i++) Debug.Log(entities[i]);
+			// Display cards
+			IList<IEntity> cards = ServiceLocator.Get<IEntityService>().Get();
+			for (int i = 0; i < cards.Count; i++) Debug.Log(cards[i]);
 		}));
+	}
+
+	public bool IdentityFilter(IEntity card)
+	{
+		ICardType alterEgoCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ALTER_EGO);
+		ICardType heroCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.HERO);
+
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsOneOfCardType(alterEgoCardType, heroCardType));
+	}
+	public bool NemesisFilter(IEntity card)
+	{
+		IClassification nemesisClassification = ServiceLocator.Get<IClassificationService>().Get(Classifications.NEMESIS);
+
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsClassification(nemesisClassification));
+	}
+	public bool ObligationFilter(IEntity card)
+	{
+		ICardType obligationCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.OBLIGATION);
+
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsCardType(obligationCardType));
+	}
+	public static IEntity GetFirst(Func<IEntity, bool> filter, IList<IEntity> dataSet)
+	{
+		for (int i = 0; i < dataSet.Count; i++)
+		{
+			IFaceContainerComponentProxy faceContainer = dataSet[i].GetComponent<IFaceContainerComponentProxy>();
+			IList<string> faces = faceContainer.Faces.Keys.ToList();
+			for (int j = 0; j < faces.Count; j++)
+				if (filter.Invoke(faceContainer.Faces[faces[j]].Face)) return (dataSet[i]);
+		}
+
+		return (null);
+	}
+	public static IList<IEntity> GetAll(Func<IEntity, bool> filter, IList<IEntity> dataSet)
+	{
+		IList<IEntity> filteredDataSet = new List<IEntity>();
+		for (int i = 0; i < dataSet.Count; i++)
+		{
+			IFaceContainerComponentProxy faceContainer = dataSet[i].GetComponent<IFaceContainerComponentProxy>();
+			IList<string> faces = faceContainer.Faces.Keys.ToList();
+			for (int j = 0; j < faces.Count; j++)
+				if (filter.Invoke(faceContainer.Faces[faces[j]].Face)) filteredDataSet.Add(dataSet[i]);
+		}
+
+		return (filteredDataSet);
 	}
 }

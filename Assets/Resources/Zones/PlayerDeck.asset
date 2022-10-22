@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Key: PLAYER_DECK
   Name: Deck joueur
+  Shufflable: 1
