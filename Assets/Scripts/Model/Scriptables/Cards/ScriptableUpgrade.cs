@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Upgrade", menuName = "Cards/Upgrade")]
+[CreateAssetMenu(fileName = "Card", menuName = "Cards/Card")]
 public class ScriptableUpgrade : ScriptableEntity
 {
-	[Header("Upgrade Attributes")]
+	[Header("Card Attributes")]
 	[SerializeField] protected string Name;
 	[SerializeField] protected string Title;
 	[SerializeField] protected bool Unique;
-	[SerializeField] protected BaseDecoratorFactoryScriptable<IAttackComponent>[] StaticAbilities;
+	[SerializeField] protected ScriptableCardType CardType;
+	[SerializeField] protected ScriptableClassification Classification;
 	[SerializeField] protected Sprite Image;
 
 	public override IEntity Create()
@@ -15,10 +16,7 @@ public class ScriptableUpgrade : ScriptableEntity
 		IEntity card = new Entity();
 		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
 		card.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, Image));
-		//ICardComponentProxy cardComponentProxy = card.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.UPGRADE)));
-		//for (int i = 0; i < StaticAbilities.Length; i++)
-		//	cardComponentProxy.Register(new CardComponentDecoratorAttacherDecorator<IAttackComponent>(cardComponentProxy, StaticAbilities[i]));
-
+		card.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardType.Key), ServiceLocator.Get<IClassificationService>().Get(Classification.Key)));
 		return (card);
 	}
 }

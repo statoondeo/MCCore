@@ -10,8 +10,12 @@ public class BasicComponentProxy : BaseComponentProxy<IBasicComponent>, IBasicCo
 	public BasicComponentProxy() : base(new BasicComponent())
 	{
 		MoveCommands = new Dictionary<string, ICommand>();
-		IList<IZone> zones = ServiceLocator.Get<IZoneService>().Get();
-		for (int i = 0; i < zones.Count; i++) MoveCommands.Add(zones[i].Key, new MoveCommand(this, zones[i].Key, CommandType.MOVE));
+		IList<IEntity> zones = ServiceLocator.Get<IZoneService>().Get();
+		for (int i = 0; i < zones.Count; i++)
+		{
+			IZoneComponentProxy zoneComponentProxy = zones[i].GetComponent<IZoneComponentProxy>();
+			MoveCommands.Add(zoneComponentProxy.Key, new MoveCommand(this, zoneComponentProxy.Key, CommandType.MOVE));
+		}
 	}
 
 	public bool CanMoveTo(string zoneId) => Wrapped.CanMoveTo(zoneId);

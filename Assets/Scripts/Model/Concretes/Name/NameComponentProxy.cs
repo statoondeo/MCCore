@@ -5,7 +5,7 @@ public class NameComponentProxy : BaseComponentProxy<INameComponent>, INameCompo
 {
 	public string Name => Wrapped.Name;
 	public Sprite Image => Wrapped.Image;
-	
+
 	public NameComponentProxy(string name, Sprite image) : base(new NameComponent(name, image)) { }
 
 	public override string ToString()

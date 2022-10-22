@@ -572,8 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d25c7b2cf931994aae568cc7e869335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hero: {fileID: 11400000, guid: 4b96623c26155f74e910d84c2fc105c2, type: 2}
-  Upgrade: {fileID: 0}
+  Deck: {fileID: 11400000, guid: 38777739fc207384797a70c5728e8fd7, type: 2}
 --- !u!4 &1778616343
 Transform:
   m_ObjectHideFlags: 0

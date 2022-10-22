@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ZoneService : IndexedTankService<IZone, string>, IZoneService
+public class ZoneService : IndexedTankService<IEntity, string>, IZoneService
 {
 	public static readonly string RESOURCE_PATH = "Zones";
 
@@ -9,8 +9,9 @@ public class ZoneService : IndexedTankService<IZone, string>, IZoneService
 		ScriptableZone[] items = Resources.LoadAll<ScriptableZone>(RESOURCE_PATH);
 		for (int i = 0; i < items.Length; i++)
 		{
-			IZone item = items[i].Create();
-			Add(item.Key, item);
+			IEntity item = items[i].Create();
+			IZoneComponentProxy zoneComponentProxy = item.GetComponent<IZoneComponentProxy>();
+			Add(zoneComponentProxy.Key, item);
 		}
 		return (this);
 	}

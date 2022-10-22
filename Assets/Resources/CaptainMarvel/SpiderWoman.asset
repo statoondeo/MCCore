@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
+  m_Name: SpiderWoman
+  m_EditorClassIdentifier: 
+  Id: fddab584-d510-4086-952b-55686d0173c5
+  Name: Spider-Woman
+  Title: Jessica Drew
+  Unique: 1
+  CardType: {fileID: 11400000, guid: d987fff716babbe428fdb075fce1ad43, type: 2}
+  Classification: {fileID: 11400000, guid: 5016cd9aacb17b44d85cdfda51d9b703, type: 2}
+  Image: {fileID: 21300000, guid: 541d91889da365b4a96c5515d37a1fc1, type: 3}

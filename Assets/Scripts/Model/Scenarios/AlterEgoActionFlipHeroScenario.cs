@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class AlterEgoActionFlipHeroAction : IScenario
+public class AlterEgoActionFlipHeroScenario : BaseScenario
 {
-	public IList<ICommand> Commands { get; protected set; }
-
-	public AlterEgoActionFlipHeroAction(ScriptableEntity hero)
+	public AlterEgoActionFlipHeroScenario(ScriptableEntity hero) : base()
 	{
-		Commands = new List<ICommand>();
 		string captainMarvelId = string.Empty;
 		Commands.Add(new GenericCommand(() =>
 		{

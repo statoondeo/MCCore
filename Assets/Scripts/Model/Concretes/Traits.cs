@@ -20,22 +20,22 @@
 	public static readonly string THWART = "THWART";
 	public static readonly string WEAPON = "WEAPON";
 
-	public static bool IsTrait(ITraitComponentProxy traitComponent, ITrait trait)
+	public static bool IsTrait(this ITraitComponentProxy traitComponent, ITrait trait)
 	{
 		for (int i = 0; i < traitComponent.Traits.Count; i++)
 			if (traitComponent.Traits[i].Equals(trait)) return (true);
 		return (false);
 	}
-	public static bool IsOneOfTrait(ITraitComponentProxy traitComponent, ITrait[] traits)
+	public static bool IsOneOfTrait(this ITraitComponentProxy traitComponent, params ITrait[] traits)
 	{
 		for (int i = 0; i < traits.Length; i++)
-			if (IsTrait(traitComponent, traits[i])) return (true);
+			if (traitComponent.IsTrait(traits[i])) return (true);
 		return (false);
 	}
-	public static bool IsAllTrait(ITraitComponentProxy traitComponent, ITrait[] traits)
+	public static bool IsAllTrait(this ITraitComponentProxy traitComponent, params ITrait[] traits)
 	{
 		for (int i = 0; i < traits.Length; i++)
-			if (!IsTrait(traitComponent, traits[i])) return (false);
+			if (!traitComponent.IsTrait(traits[i])) return (false);
 		return (true);
 	}
 }

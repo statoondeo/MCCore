@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: CombatTraining
   m_EditorClassIdentifier: 
+  Id: be1adce7-607e-4101-b5eb-dbdfb423a445
   Name: Combat Training
   Title: 
   Unique: 0
-  StaticAbilities:
-  - {fileID: 11400000, guid: e7b1206212051e640a9735583b6e1573, type: 2}
+  CardType: {fileID: 11400000, guid: 8c6d5f64c27f9b24da92ea67d2e301e1, type: 2}
+  Classification: {fileID: 11400000, guid: e13ae33246377844daa321c54201da99, type: 2}
   Image: {fileID: 21300000, guid: d8290518bdac97b4fa00cea6e5d2025a, type: 3}

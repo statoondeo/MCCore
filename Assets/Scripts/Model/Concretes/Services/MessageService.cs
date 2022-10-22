@@ -18,11 +18,7 @@ public class MessageService : IMessageService
 	}
 
 	public void Raise((MessageType, string) eventName) => Raise(eventName, MessageArg.Empty);
-	public void Raise((MessageType, string) eventName, MessageArg eventArg)
-	{
-		Debug.Log($"Raise {eventName.Item1}/{eventName.Item2}");
-		GetEvent(eventName)?.Raise(eventArg);
-	}
+	public void Raise((MessageType, string) eventName, MessageArg eventArg) => RaiseAction.Invoke(eventName, eventArg);
 	public void Register((MessageType, string) eventToListen, Action<MessageArg> callback)
 	{
 		Message message = GetEvent(eventToListen);
@@ -39,6 +35,6 @@ public class MessageService : IMessageService
 		UnMute();
 		return (this);
 	}
-	public void Mute() => RaiseAction = UnMutedRaise;
-	public void UnMute() => RaiseAction = MutedRaise;
+	public void Mute() => RaiseAction = MutedRaise;
+	public void UnMute() => RaiseAction = UnMutedRaise;
 }

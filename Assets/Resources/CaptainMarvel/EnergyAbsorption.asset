@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
+  m_Name: EnergyAbsorption
+  m_EditorClassIdentifier: 
+  Id: 8d5f24d8-c370-41f1-88b9-302d78b6037e
+  Name: Energy Absorption
+  Title: 
+  Unique: 0
+  CardType: {fileID: 11400000, guid: bfc0f16ced92a814cb1cdd8200f44bd7, type: 2}
+  Classification: {fileID: 11400000, guid: 5016cd9aacb17b44d85cdfda51d9b703, type: 2}
+  Image: {fileID: 21300000, guid: caec1326e729e4f4e96cc7d7a6d9b6b8, type: 3}

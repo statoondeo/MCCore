@@ -29,7 +29,7 @@ public class ScriptableHero : ScriptableEntity
 		ITraitService traitService = ServiceLocator.Get<ITraitService>();
 		IEntity face = new FaceEntity();
 		face.AddComponent<INameComponentProxy>(new NameComponentProxy(AEName, AEImage));
-		face.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ALTER_EGO)));
+		face.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ALTER_EGO), ServiceLocator.Get<IClassificationService>().Get(Classifications.HERO)));
 		ITrait[] traits = AETraits.Length > 0 ? new ITrait[AETraits.Length] : null;
 		for (int i = 0; i < AETraits.Length; i++) traits[i] = traitService.Get(AETraits[i].Key);
 		face.AddComponent<ITraitComponentProxy>(new TraitComponentProxy(traits));
@@ -48,7 +48,7 @@ public class ScriptableHero : ScriptableEntity
 		ITraitService traitService = ServiceLocator.Get<ITraitService>();
 		IEntity face = new FaceEntity();
 		face.AddComponent<INameComponentProxy>(new NameComponentProxy(HeroName, HeroImage));
-		face.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.HERO)));
+		face.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.HERO), ServiceLocator.Get<IClassificationService>().Get(Classifications.HERO)));
 		ITrait[] traits = HeroTraits.Length > 0 ? new ITrait[HeroTraits.Length] : null;
 		for (int i = 0; i < HeroTraits.Length; i++) traits[i] = traitService.Get(HeroTraits[i].Key);
 		face.AddComponent<ITraitComponentProxy>(new TraitComponentProxy(traits));

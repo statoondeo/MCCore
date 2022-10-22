@@ -1,1 +1,1 @@
-﻿public interface IEntityService : ITank<IEntity> { }
+﻿public interface IEntityService : ITank<IEntity>, IService { }
