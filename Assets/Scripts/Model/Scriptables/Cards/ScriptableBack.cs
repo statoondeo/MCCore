@@ -10,7 +10,6 @@ public class ScriptableBack : ScriptableEntity
 	public override IEntity Create()
 	{
 		IEntity card = new Entity();
-		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
 		card.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, Image));
 		return (card);
 	}

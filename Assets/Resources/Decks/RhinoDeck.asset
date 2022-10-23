@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518372f9091c389408bc10ff40d471ee, type: 3}
+  m_Name: RhinoDeck
+  m_EditorClassIdentifier: 
+  Cards:
+  - {fileID: 11400000, guid: e256a14145e6c7647a2d5ba1d4617a03, type: 2}
+  - {fileID: 11400000, guid: 199630c289fa3084db42ff8443566bba, type: 2}
+  - {fileID: 11400000, guid: ea034520b4d4baf428296a2ddce5994d, type: 2}
+  - {fileID: 11400000, guid: d57e24838e053b141a082b60b0d24389, type: 2}
+  - {fileID: 11400000, guid: d57e24838e053b141a082b60b0d24389, type: 2}
+  - {fileID: 11400000, guid: efb22ccc6002aa3459860ed15848b569, type: 2}
+  - {fileID: 11400000, guid: f2cad72db2a44854a90336cc380aaedf, type: 2}
+  - {fileID: 11400000, guid: f2cad72db2a44854a90336cc380aaedf, type: 2}
+  - {fileID: 11400000, guid: 7de8d0d4266a9db45b2e746cd224031b, type: 2}
+  - {fileID: 11400000, guid: 9fdcdb12b5ab42249a016962306043e4, type: 2}
+  - {fileID: 11400000, guid: 17477eaffcb4e014c82a630474b29385, type: 2}
+  - {fileID: 11400000, guid: 17477eaffcb4e014c82a630474b29385, type: 2}
+  - {fileID: 11400000, guid: 7bedc85992abd7f4ab9ea329d4049c21, type: 2}
+  - {fileID: 11400000, guid: 7bedc85992abd7f4ab9ea329d4049c21, type: 2}
+  - {fileID: 11400000, guid: 22f25c0f0e06dfc4c881c5a41ab4b884, type: 2}
+  - {fileID: 11400000, guid: 22f25c0f0e06dfc4c881c5a41ab4b884, type: 2}
+  - {fileID: 11400000, guid: c9fc4943ed357324f80e19d2a0014beb, type: 2}
+  - {fileID: 11400000, guid: 276b69f37769e70468f299a1a0c1e5d0, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518372f9091c389408bc10ff40d471ee, type: 3}
+  m_Name: AggressionDeck
+  m_EditorClassIdentifier: 
+  Cards:
+  - {fileID: 11400000, guid: 213f44349bff5964cb7e2f0ead7e64cf, type: 2}
+  - {fileID: 11400000, guid: 7c5991ffce2d41047b640275c43868fc, type: 2}
+  - {fileID: 11400000, guid: 4e1b782cb2fe37443badacbd2ef1c37e, type: 2}
+  - {fileID: 11400000, guid: 4e1b782cb2fe37443badacbd2ef1c37e, type: 2}
+  - {fileID: 11400000, guid: b42ce59e69c74df4f9e0fa17c44e3039, type: 2}
+  - {fileID: 11400000, guid: b42ce59e69c74df4f9e0fa17c44e3039, type: 2}
+  - {fileID: 11400000, guid: 4f336e8a750197148abdaef17684a2ca, type: 2}
+  - {fileID: 11400000, guid: 4f336e8a750197148abdaef17684a2ca, type: 2}
+  - {fileID: 11400000, guid: 248e74811466662448d21cb28cd57a88, type: 2}
+  - {fileID: 11400000, guid: 248e74811466662448d21cb28cd57a88, type: 2}
+  - {fileID: 11400000, guid: 7b6448e67a6c1bb45bb23cd4dbb4a364, type: 2}
+  - {fileID: 11400000, guid: 7b6448e67a6c1bb45bb23cd4dbb4a364, type: 2}
+  - {fileID: 11400000, guid: 90bf61faf5ab92c4daf9598b6451f9cd, type: 2}
+  - {fileID: 11400000, guid: 90bf61faf5ab92c4daf9598b6451f9cd, type: 2}

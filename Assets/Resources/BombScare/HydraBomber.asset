@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
+  m_Name: HydraBomber
+  m_EditorClassIdentifier: 
+  Id: 
+  Name: Hydra Bomber
+  Title: 
+  Unique: 0
+  CardType: {fileID: 11400000, guid: 4270a10c254126d4ab0c0217cae280a1, type: 2}
+  Classification: {fileID: 11400000, guid: 9c709f8eeab88964ba2670680b6cbab9, type: 2}
+  Image: {fileID: 21300000, guid: 81c075ca53908ee4e9cf20e44e2943b0, type: 3}
+  Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}

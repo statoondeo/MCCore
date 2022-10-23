@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518372f9091c389408bc10ff40d471ee, type: 3}
+  m_Name: BombScareDeck
+  m_EditorClassIdentifier: 
+  Cards:
+  - {fileID: 11400000, guid: c2d7a8347ae01e742b0525c1ac5e0f1c, type: 2}
+  - {fileID: 11400000, guid: 8a4c30569ea7e9549befb80a4406e5e6, type: 2}
+  - {fileID: 11400000, guid: 8a4c30569ea7e9549befb80a4406e5e6, type: 2}
+  - {fileID: 11400000, guid: 7e4db64209096f749ad7201a7baae90d, type: 2}
+  - {fileID: 11400000, guid: f9eca24c33503b044b031ea73d051656, type: 2}

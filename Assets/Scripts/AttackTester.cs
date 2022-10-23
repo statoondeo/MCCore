@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class AttackTester : MonoBehaviour
 {
-	[SerializeField] protected ScriptableDeck Deck;
+	[SerializeField] protected ScriptableDeck[] PlayerDeck;
+	[SerializeField] protected ScriptableDeck[] VillainDeck;
 
 	void Start()
 	{
@@ -12,6 +13,7 @@ public class AttackTester : MonoBehaviour
 		ServiceLocator.Register<ITraitService>(new TraitService()).Initialize();
 		ServiceLocator.Register<IZoneService>(new ZoneService()).Initialize();
 		ServiceLocator.Register<IEntityService>(new EntityService()).Initialize();
+		ServiceLocator.Register<IPlayerService>(new PlayerService()).Initialize();
 
 		// Process services
 		ServiceLocator.Register<IStackService>(new StackService()).Initialize();
@@ -19,7 +21,7 @@ public class AttackTester : MonoBehaviour
 
 		// Test scenario
 		IStackService stackService = ServiceLocator.Get<IStackService>();
-		IScenario scenario = new PlayerSetupScenario(Deck);
+		IScenario scenario = new PlayerSetupScenario(PlayerDeck);
 		for (int i = 0; i < scenario.Commands.Count; i++)
 		{
 			scenario.Commands[i].Execute();
