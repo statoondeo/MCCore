@@ -13,7 +13,7 @@ public class ScriptableHero : ScriptableEntity
 	[SerializeField] protected int AEHandSize;
 	[SerializeField] protected ScriptableTrait[] AETraits;
 	[SerializeField] protected ScriptableCommand[] AEAbilities;
-	
+
 	[Header("Hero Attribues")]
 	[SerializeField] protected string HeroName;
 	[SerializeField] protected Sprite HeroImage;

@@ -572,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d25c7b2cf931994aae568cc7e869335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerName: Statoondeo
   PlayerDeck:
   - {fileID: 11400000, guid: 38777739fc207384797a70c5728e8fd7, type: 2}
   - {fileID: 11400000, guid: 8a23b0f03e2fcea43ae5004ea109c54e, type: 2}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c952707248ecc74581e8a1b935b7061, type: 3}
+  m_Name: Rhino2
+  m_EditorClassIdentifier: 
+  Id: 391ac789-cd1a-4c95-8140-5cd4c56bf537
+  Name: Rhino
+  Face1Stage: 2
+  Face1Scheme: 1
+  Face1Attack: 3
+  Face1HitPoints: 15
+  Face1Traits:
+  - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
+  - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
+  Face1Abilities: []
+  Face1Image: {fileID: 21300000, guid: a6c88f68ec632ca4caf9cdd00db5683a, type: 3}
+  Face2Stage: 3
+  Face2Scheme: 1
+  Face2Attack: 4
+  Face2HitPoints: 16
+  Face2Traits:
+  - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
+  - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
+  Face2Abilities: []
+  Face2Image: {fileID: 21300000, guid: 6530870ceabfd584d89e4a282749b5af, type: 3}

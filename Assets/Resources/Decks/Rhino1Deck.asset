@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 518372f9091c389408bc10ff40d471ee, type: 3}
-  m_Name: RhinoDeck
+  m_Name: Rhino1Deck
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 11400000, guid: e256a14145e6c7647a2d5ba1d4617a03, type: 2}
+  - {fileID: 11400000, guid: 3d724d06ca218314e9ead12101215a36, type: 2}
   - {fileID: 11400000, guid: 199630c289fa3084db42ff8443566bba, type: 2}
   - {fileID: 11400000, guid: ea034520b4d4baf428296a2ddce5994d, type: 2}
   - {fileID: 11400000, guid: d57e24838e053b141a082b60b0d24389, type: 2}

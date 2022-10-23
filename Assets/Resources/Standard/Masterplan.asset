@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
-  m_Name: Advance 5
+  m_Name: Masterplan
   m_EditorClassIdentifier: 
   Id: 
-  Name: Advance
+  Name: Masterplan
   Title: 
   Unique: 0
   CardType: {fileID: 11400000, guid: f49ffd664a97b0b41a2e9fb752ebe855, type: 2}
   Classification: {fileID: 11400000, guid: 12f424999de8b96499392689500e0df4, type: 2}
-  Image: {fileID: 21300000, guid: 5634488e58d3f054db28f55fc9166b82, type: 3}
+  Image: {fileID: 21300000, guid: 781659c6c19957c4f9c923ac38b81dc6, type: 3}
   Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}

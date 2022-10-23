@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerSetupScenario : BaseScenario
 {
-	public PlayerSetupScenario(ScriptableDeck[] deck) : base()
+	public PlayerSetupScenario(ScriptableDeck[] deck, string playerName) : base()
 	{
 		Commands.Add(new GenericCommand(() =>
 		{
@@ -13,7 +13,7 @@ public class PlayerSetupScenario : BaseScenario
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Create player
-			IPlayer player = ServiceLocator.Get<IPlayerService>().Add("Statoondeo", new Player("Statoondeo"));
+			IPlayer player = ServiceLocator.Get<IPlayerService>().Add(playerName, new Player(playerName));
 
 			// Create player deck
 			List<IEntity> deckList = new();
@@ -32,7 +32,7 @@ public class PlayerSetupScenario : BaseScenario
 		{
 			// Select Identity
 			IEntity hero = Filters.GetFirst(Filters.IdentityFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
-			ServiceLocator.Get<IPlayerService>().Get("Statoondeo").SetIdentity(hero);
+			ServiceLocator.Get<IPlayerService>().Get(playerName).SetIdentity(hero);
 
 			// Flip to Alter-ego face
 			hero.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.ALTER_EGO);
@@ -69,7 +69,7 @@ public class PlayerSetupScenario : BaseScenario
 		})); Commands.Add(new GenericCommand(() =>
 		{
 			// Draw hand
-			int handSize = ServiceLocator.Get<IPlayerService>().Get("Statoondeo").Identity.GetComponent<IFaceContainerComponentProxy>().ActiveFace.Face.GetComponent<IHandSizeComponentProxy>().Size;
+			int handSize = ServiceLocator.Get<IPlayerService>().Get(playerName).Identity.GetComponent<IFaceContainerComponentProxy>().ActiveFace.Face.GetComponent<IHandSizeComponentProxy>().Size;
 			IStackService stackService = ServiceLocator.Get<IStackService>();
 			for (int i = 0; i < handSize; i++) stackService.EnqueueCommand(new DrawCommand());
 		}));
