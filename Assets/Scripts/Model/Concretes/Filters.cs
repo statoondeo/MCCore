@@ -4,6 +4,36 @@ using System;
 
 public static class Filters
 {
+	public static bool EncounterFilter(IEntity card)
+	{
+		ICardType[] cardTypes = new ICardType[6] {
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ATTACHMENT),
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.MAIN_SCHEME),
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.MINION),
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.SIDE_SCHEME),
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.TREACHERY),
+			ServiceLocator.Get<ICardTypeService>().Get(CardTypes.TREACHERY),
+		};
+
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsOneOfCardType(cardTypes));
+	}
+	public static bool MainSchemeFilter(IEntity card)
+	{
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsCardType(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.MAIN_SCHEME)));
+	}
+	public static bool VillainFilter(IEntity card)
+	{
+		ICardComponentProxy cardComponentProxy = card.GetComponent<ICardComponentProxy>();
+		if (null == cardComponentProxy) return (false);
+
+		return (cardComponentProxy.IsCardType(ServiceLocator.Get<ICardTypeService>().Get(CardTypes.VILLAIN)));
+	}
 	public static bool IdentityFilter(IEntity card)
 	{
 		ICardType alterEgoCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.ALTER_EGO);

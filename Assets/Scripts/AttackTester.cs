@@ -22,7 +22,7 @@ public class AttackTester : MonoBehaviour
 
 		// Test scenario
 		IStackService stackService = ServiceLocator.Get<IStackService>();
-		IScenario scenario = new PlayerSetupScenario(PlayerDeck, PlayerName);
+		IScenario scenario = new PlayerSetupScenario(PlayerDeck, VillainDeck, PlayerName);
 		for (int i = 0; i < scenario.Commands.Count; i++)
 		{
 			scenario.Commands[i].Execute();
