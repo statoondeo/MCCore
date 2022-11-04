@@ -7,7 +7,7 @@ public class PlayableGenerateComponentProxy : PlayableComponentProxy
 		get
 		{
 			if (null == mPlayCommand)
-				mPlayCommand = new PlayGenerateCommand(this, Entity.GetComponent<IBasicComponentProxy>(), Zones.STACK);
+				mPlayCommand = new PlayGenerateCommand(this, Entity.GetComponent<IBasicComponentProxy>(), (Zones.STACK, null));
 
 			return (mPlayCommand);
 		}

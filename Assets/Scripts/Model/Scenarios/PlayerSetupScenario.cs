@@ -3,80 +3,63 @@ using UnityEngine;
 
 public class PlayerSetupScenario : BaseScenario
 {
-	public PlayerSetupScenario(ScriptableDeck[] deck, ScriptableDeck[] villainDeck, string playerName) : base()
+	public PlayerSetupScenario(IPlayer player, ScriptableDeck[] playerDeck, IPlayer villain, ScriptableDeck[] villainDeck) : base()
 	{
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Mute messages
 			ServiceLocator.Get<IMessageService>().Mute();
+			ServiceLocator.Get<IStateBasedEffectService>().Mute();
 		}));
 
 		#region Player Setup
 
 		Commands.Add(new GenericCommand(() =>
 		{
-			// Create player
-			IPlayer player = ServiceLocator.Get<IPlayerService>().Add(playerName, new Player(playerName));
-
 			// Create player deck
 			List<IEntity> deckList = new();
-			for (int i = 0; i < deck.Length; i++) deckList.AddRange(deck[i].Create());
+			for (int i = 0; i < playerDeck.Length; i++) deckList.AddRange(playerDeck[i].Create(player));
 
 			// Deck feeding
 			IEntityService entityService = ServiceLocator.Get<IEntityService>();
 			for (int i = 0; i < deckList.Count; i++)
 			{
 				IEntity card = entityService.Add(deckList[i]);
-				card.GetComponent<IBasicComponentProxy>().MoveTo(Zones.PLAYER_DECK);
+				card.GetComponent<IBasicComponentProxy>().MoveTo(Zones.DECK);
 				card.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.VERSO);
 			}
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Select Identity
-			IEntity hero = Filters.GetFirst(Filters.IdentityFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
-			ServiceLocator.Get<IPlayerService>().Get(playerName).SetIdentity(hero);
+			player.SetIdentity(ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<ITankComponentProxy>().GetFirst(new IdentityCardFilterStrategy()));
 
 			// Flip to Alter-ego face
-			hero.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.ALTER_EGO);
+			player.Identity.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.ALTER_EGO);
 
 			// Move to Battlefield
-			IBasicComponentProxy basicComponent = hero.GetComponent<IBasicComponentProxy>();
-			basicComponent.MoveTo(Zones.BATTLEFIELD);
+			player.Identity.GetComponent<IBasicComponentProxy>().MoveTo((Zones.BATTLEFIELD, null));
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Set aside obligations
-			IList<IEntity> cards = Filters.GetAll(Filters.ObligationFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
-			for (int i = 0; i < cards.Count; i++)
-			{
-				IBasicComponentProxy basicComponent = cards[i].GetComponent<IBasicComponentProxy>();
-				basicComponent.MoveTo(Zones.PLAYER_EXIL);
-			}
+			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<ITankComponentProxy>().Get(new CardTypesFilterStrategy(CardTypes.OBLIGATION));
+			for (int i = 0; i < cards.Count; i++) cards[i].GetComponent<IBasicComponentProxy>().MoveTo(Zones.EXIL);
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Set aside nemesis cards
-			IList<IEntity> cards = Filters.GetAll(Filters.NemesisFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get());
-			for (int i = 0; i < cards.Count; i++)
-			{
-				IBasicComponentProxy basicComponent = cards[i].GetComponent<IBasicComponentProxy>();
-				basicComponent.MoveTo(Zones.PLAYER_EXIL);
-			}
+			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<ITankComponentProxy>().Get(new ClassificationFilterStrategy(Classifications.NEMESIS));
+			for (int i = 0; i < cards.Count; i++) cards[i].GetComponent<IBasicComponentProxy>().MoveTo(Zones.EXIL);
+
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Shuffle deck
-			ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<IShuffleComponentProxy>().Shuffle();
+			ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<IShuffleComponentProxy>().Shuffle();
 
 		})); 
-		Commands.Add(new GenericCommand(() =>
-		{
-			// Draw hand
-			int handSize = ServiceLocator.Get<IPlayerService>().Get(playerName).Identity.GetComponent<IFaceContainerComponentProxy>().ActiveFace.Face.GetComponent<IHandSizeComponentProxy>().Size;
-			IStackService stackService = ServiceLocator.Get<IStackService>();
-			for (int i = 0; i < handSize; i++) stackService.EnqueueCommand(new DrawCommand());
-		}));
+		Commands.Add(new DrawHandCommand(player));
 
 		#endregion
 
@@ -85,72 +68,57 @@ public class PlayerSetupScenario : BaseScenario
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Create player
-			ServiceLocator.Get<IPlayerService>().Add("VILLAIN", new Player("VILLAIN"));
+			//ServiceLocator.Get<IPlayerService>().Add("VILLAIN", new Player("VILLAIN"));
 
 			// Create player deck
 			List<IEntity> deckList = new();
-			for (int i = 0; i < villainDeck.Length; i++) deckList.AddRange(villainDeck[i].Create());
+			for (int i = 0; i < villainDeck.Length; i++) deckList.AddRange(villainDeck[i].Create(villain));
 
 			// Deck feeding
 			IEntityService entityService = ServiceLocator.Get<IEntityService>();
 			for (int i = 0; i < deckList.Count; i++)
 			{
 				IEntity card = entityService.Add(deckList[i]);
-				card.GetComponent<IBasicComponentProxy>().MoveTo(Zones.VILLAIN_DECK);
+				card.GetComponent<IBasicComponentProxy>().MoveTo(Zones.DECK);
 				card.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.VERSO);
 			}
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Select Identity
-			IEntity villain = Filters.GetFirst(Filters.VillainFilter, ServiceLocator.Get<IZoneService>().Get(Zones.VILLAIN_DECK).GetComponent<ITankComponentProxy>().Get());
-			ServiceLocator.Get<IPlayerService>().Get("VILLAIN").SetIdentity(villain);
+			villain.SetIdentity(ServiceLocator.Get<IZoneService>().Get((Zones.DECK, villain)).GetComponent<ITankComponentProxy>().GetFirst(new CardTypesFilterStrategy(CardTypes.VILLAIN)));
 
 			// Flip to Alter-ego face
-			villain.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.RECTO);
+			villain.Identity.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.RECTO);
 
 			// Move to Battlefield
-			IBasicComponentProxy basicComponent = villain.GetComponent<IBasicComponentProxy>();
-			basicComponent.MoveTo(Zones.BATTLEFIELD);
+			villain.Identity.GetComponent<IBasicComponentProxy>().MoveTo((Zones.BATTLEFIELD, null));
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Shuffle deck
-			ServiceLocator.Get<IZoneService>().Get(Zones.VILLAIN_DECK).GetComponent<IShuffleComponentProxy>().Shuffle();
-
+			ServiceLocator.Get<IZoneService>().Get((Zones.DECK, villain)).GetComponent<IShuffleComponentProxy>().Shuffle();
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Main Scheme Setup
-			IList<IEntity> mainSchemes = Filters.GetAll(Filters.MainSchemeFilter, ServiceLocator.Get<IZoneService>().Get(Zones.VILLAIN_DECK).GetComponent<ITankComponentProxy>().Get());
-			for (int i = 0; i < mainSchemes.Count; i++)
-			{
-				ISetupComponentProxy setupComponentProxy = mainSchemes[i].GetComponent<ISetupComponentProxy>();
-				setupComponentProxy?.Setup();
-			}
+			IList<IEntity> mainSchemes = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, villain)).GetComponent<ITankComponentProxy>().Get(new CardTypesFilterStrategy(CardTypes.MAIN_SCHEME));
+			for (int i = 0; i < mainSchemes.Count; i++) mainSchemes[i].GetComponent<ISetupComponentProxy>()?.Setup();
 		})); 
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Battlefield Encounter cards WhenRevealed
-			IList<IEntity> cards = Filters.GetAll(Filters.EncounterFilter, ServiceLocator.Get<IZoneService>().Get(Zones.BATTLEFIELD).GetComponent<ITankComponentProxy>().Get());
-			for (int i = 0; i < cards.Count; i++)
-			{
-				IWhenRevealedComponentProxy setupComponentProxy = cards[i].GetComponent<IWhenRevealedComponentProxy>();
-				setupComponentProxy?.WhenRevealed();
-			}
+			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.BATTLEFIELD, null)).GetComponent<ITankComponentProxy>().Get(new EncounterCardFilterStrategy());
+			for (int i = 0; i < cards.Count; i++) cards[i].GetComponent<IWhenRevealedComponentProxy>()?.WhenRevealed();
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Move player obligations into villain deck
-			IList<IEntity> cards = Filters.GetAll(Filters.ObligationFilter, ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_EXIL).GetComponent<ITankComponentProxy>().Get());
-			for (int i = 0; i < cards.Count; i++)
-			{
-				IBasicComponentProxy basicComponent = cards[i].GetComponent<IBasicComponentProxy>();
-				basicComponent.MoveTo(Zones.VILLAIN_DECK);
-			}
+			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.EXIL, player)).GetComponent<ITankComponentProxy>().Get(new CardTypesFilterStrategy(CardTypes.OBLIGATION));
+			for (int i = 0; i < cards.Count; i++) cards[i].GetComponent<IBasicComponentProxy>().MoveTo((Zones.DECK, villain));
 
 			// Shuffle deck
-			ServiceLocator.Get<IZoneService>().Get(Zones.VILLAIN_DECK).GetComponent<IShuffleComponentProxy>().Shuffle();
+			ServiceLocator.Get<IZoneService>().Get((Zones.DECK, villain)).GetComponent<IShuffleComponentProxy>().Shuffle();
 		}));
 
 		#endregion
@@ -160,31 +128,48 @@ public class PlayerSetupScenario : BaseScenario
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Mulligan
-		})); 
+			// Choose cards to discard
+			IList<IEntity> cardsToDiscard = new List<IEntity>();
+			// Discard cards
+			for (int i = 0; i < cardsToDiscard.Count; i++) cardsToDiscard[i].GetComponent<IBasicComponentProxy>().MoveTo(Zones.DISCARD);
+		}));
+		Commands.Add(new DrawHandCommand(player));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Hero Setup
-			IEntity identity = Filters.GetFirst(Filters.IdentityFilter, ServiceLocator.Get<IZoneService>().Get(Zones.BATTLEFIELD).GetComponent<ITankComponentProxy>().Get());
-			ISetupComponentProxy setupComponentProxy = identity.GetComponent<ISetupComponentProxy>();
-			setupComponentProxy?.Setup();
+			player.Identity.GetComponent<ISetupComponentProxy>()?.Setup();
 		}));
 
 		#endregion
 
 		Commands.Add(new GenericCommand(() =>
 		{
-			// Unmute messages
+			// Unmute messages/state based effects
 			ServiceLocator.Get<IMessageService>().UnMute();
+			ServiceLocator.Get<IStateBasedEffectService>().UnMute();
 		}));
-		Commands.Add(new GenericCommand(() =>
-		{
-			// Display cards in hand
-			Debug.Log(ServiceLocator.Get<IZoneService>().Get(Zones.HAND));
-		})); 
+		//// Rhino II revealed
+		//Commands.Add(new GenericCommand(() =>
+		//{
+		//	// Search Breakin' & Takin'
+		//	IZoneService zoneService = ServiceLocator.Get<IZoneService>();
+		//	IFilterStrategy filterStrategy = new SpecificCardFilterStrategy("1497f5a1-72c6-4450-b618-46b0e6affc14");
+		//	ITankComponentProxy discard = zoneService.Get((Zones.DISCARD, villain)).GetComponent<ITankComponentProxy>();
+		//	ITankComponentProxy deck = zoneService.Get((Zones.DECK, villain)).GetComponent<ITankComponentProxy>(); 
+		//	IEntity cardFound = /*discard.GetFirst(filterStrategy) ?? */deck.GetFirst(filterStrategy);
+
+		//	if (null != cardFound)
+		//	{
+		//		cardFound.GetComponent<IBasicComponentProxy>().MoveTo((Zones.BATTLEFIELD, null));
+		//		cardFound.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.RECTO);
+		//		cardFound.GetComponent<IFaceContainerComponentProxy>().ActiveFace.Face.GetComponent<IWhenRevealedComponentProxy>()?.WhenRevealed();
+		//	}
+		//	zoneService.Get((Zones.DECK, villain)).GetComponent<IShuffleComponentProxy>().Shuffle();
+		//}));
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Display cards on battlefield
-			Debug.Log(ServiceLocator.Get<IZoneService>().Get(Zones.BATTLEFIELD));
+			Debug.Log(ServiceLocator.Get<IZoneService>().Get((Zones.BATTLEFIELD, null)));
 		}));
 	}
 }

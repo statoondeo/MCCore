@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public class TankComponent : BaseComponent, ITankComponent
 {
@@ -10,12 +11,42 @@ public class TankComponent : BaseComponent, ITankComponent
 
 	public IEntity Add(IEntity item)
 	{
-		IBasicComponentProxy basicComponentProxy = item.GetComponent<IBasicComponentProxy>();
-		basicComponentProxy.SetOrder(Tank.Count);
+		item.GetComponent<IBasicComponentProxy>().SetOrder(Tank.Count);
 		return (Tank.Add(item));
+	}
+	public void Add(IList<IEntity> items)
+	{
+		for(int i = 0; i < items.Count; i++) Add(items[i]);
 	}
 	public IList<IEntity> Get() => Tank.Get();
 	public IEntity Get(int index) => Tank.Get(index);
+	public IList<IEntity> Get(IFilterStrategy filter)
+	{
+		IList<IEntity> entities = Tank.Get();
+		IList<IEntity> result = new List<IEntity>();
+		for (int i = 0; i < entities.Count; i++)
+		{
+			IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
+			IList<string> faces = faceContainer.Faces.Keys.ToList();
+			for (int j = 0; j < faces.Count; j++)
+				if (filter.Filter(faceContainer.Faces[faces[j]].Face)) result.Add(entities[i]);
+		}
+		return (result);
+	}
+	public IEntity GetFirst(IFilterStrategy filter)
+	{
+		IList<IEntity> entities = Tank.Get();
+		for (int i = 0; i < entities.Count; i++)
+		{
+			if (filter.Filter(entities[i])) return (entities[i]);
+			IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
+			IList<string> faces = faceContainer.Faces.Keys.ToList();
+			for (int j = 0; j < faces.Count; j++)
+				if (filter.Filter(faceContainer.Faces[faces[j]].Face)) return (entities[i]);
+		}
+		return (null);
+	}
+	public void Remove() => Tank.Remove();
 	public void Remove(IEntity item)
 	{
 		int itemOrder = item.GetComponent<IBasicComponentProxy>().Order;

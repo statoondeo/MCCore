@@ -4,6 +4,7 @@ public class StackService : IStackService
 {
 	protected IList<ICommand> CommandsStack;
 	protected ICommand CurrentCommand;
+	protected IStateBasedEffectService StateBasedEffectService;
 
 	public StackService() => CommandsStack = new List<ICommand>();
 
@@ -18,15 +19,15 @@ public class StackService : IStackService
 
 	public void PerformStack()
 	{
+		StateBasedEffectService ??= ServiceLocator.Get<IStateBasedEffectService>();
 		while (CommandsStack.Count > 0)
 		{
 			if (CommandsStack[0].Done)
-			{
 				CommandsStack.RemoveAt(0);
-			}
 			else
 			{
 				CommandsStack[0].Execute();
+				StateBasedEffectService.Check();
 			}
 		}
 	}

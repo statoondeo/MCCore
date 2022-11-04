@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: BombScare
   m_EditorClassIdentifier: 
-  Id: 
+  Id: b2d27927-1ba1-465e-ae3f-2cb036b4db9d
   Name: Bomb Scare
   Title: 
   Unique: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: Stampede
   m_EditorClassIdentifier: 
-  Id: 
+  Id: 15c231a8-d0a9-4cbb-93fd-b30950530cdf
   Name: Stampede
   Title: 
   Unique: 0

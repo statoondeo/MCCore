@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: Sandman
   m_EditorClassIdentifier: 
-  Id: 
+  Id: cd5c0f93-8227-44f5-a45b-cdc9e3e25d90
   Name: Sandman
   Title: 
   Unique: 1

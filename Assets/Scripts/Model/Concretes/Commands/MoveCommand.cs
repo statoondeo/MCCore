@@ -1,9 +1,9 @@
 ﻿public class MoveCommand : BaseCommand
 {
 	protected IBasicComponentProxy BasicComponentProxy;
-	protected string TargetZone;
+	protected (string, IPlayer) TargetZone;
 
-	public MoveCommand(IBasicComponentProxy basicComponentProxy, string targetZone, string commandType) : base(commandType)
+	public MoveCommand(IBasicComponentProxy basicComponentProxy, (string, IPlayer) targetZone, string commandType) : base(commandType)
 	{
 		BasicComponentProxy = basicComponentProxy;
 		TargetZone = targetZone;

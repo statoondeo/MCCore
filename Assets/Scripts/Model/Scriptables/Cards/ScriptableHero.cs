@@ -65,16 +65,15 @@ public class ScriptableHero : ScriptableEntity
 		return (face);
 	}
 
-	public override IEntity Create()
+	public override IEntity Create(IPlayer owner)
 	{
 		IEntity identity = new Entity(Id);
-		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
+		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
+		identity.AddComponent<ILifeComponentProxy>(new LifeComponentProxy(HitPoints));
 
 		IFaceContainerComponentProxy faceContainer = identity.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());
 		faceContainer.RegisterFace(new FaceComponentProxy(CardTypes.ALTER_EGO, CreateAEFace()));
 		faceContainer.RegisterFace(new FaceComponentProxy(CardTypes.HERO, CreateHeroFace()));
-
-		identity.AddComponent<ILifeComponentProxy>(new LifeComponentProxy(HitPoints));
 
 		return (identity);
 	}

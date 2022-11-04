@@ -7,7 +7,7 @@ public class ScriptableBack : ScriptableEntity
 	[SerializeField] protected string Name;
 	[SerializeField] protected Sprite Image;
 
-	public override IEntity Create()
+	public override IEntity Create(IPlayer owner)
 	{
 		IEntity card = new Entity();
 		card.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, Image));

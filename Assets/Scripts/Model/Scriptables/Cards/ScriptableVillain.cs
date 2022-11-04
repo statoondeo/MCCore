@@ -50,14 +50,14 @@ public class ScriptableVillain : ScriptableEntity
 		return (face);
 	}
 
-	public override IEntity Create()
+	public override IEntity Create(IPlayer owner)
 	{
 		TraitService = ServiceLocator.Get<ITraitService>();
 		VillainCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.VILLAIN);
 		VillainClassification = ServiceLocator.Get<IClassificationService>().Get(Classifications.VILLAIN);
 
 		IEntity identity = new Entity(Id);
-		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
+		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
 
 		IFaceContainerComponentProxy faceContainer = identity.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());
 		faceContainer.RegisterFace(new FaceComponentProxy(Faces.RECTO, CreateFace(Face1Stage, Face1Scheme, Face1Attack, Face1HitPoints, Face1Traits, Face1Abilities, Face1Image)));

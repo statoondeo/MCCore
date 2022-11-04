@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: ImTough
   m_EditorClassIdentifier: 
-  Id: 
+  Id: 8953c831-24c0-48bb-ba99-2e1867bda8af
   Name: '"I''m Tough"'
   Title: 
   Unique: 0

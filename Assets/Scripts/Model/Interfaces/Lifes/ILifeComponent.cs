@@ -2,5 +2,5 @@
 {
 	int HitPoints { get; }
 	int Damages { get; }
-	void DealDamage();
+	void TakeDamage(int amount);
 }

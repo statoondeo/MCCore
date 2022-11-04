@@ -10,7 +10,7 @@ public class PlayableComponentProxy : BaseComponentProxy<IPlayableComponent>, IP
 		get
 		{
 			if (null == mPlayCommand)
-				mPlayCommand = new PlayCommand(this, Entity.GetComponent<IBasicComponentProxy>(), Zones.STACK);
+				mPlayCommand = new PlayCommand(this, Entity.GetComponent<IBasicComponentProxy>(), (Zones.STACK, null));
 
 			return (mPlayCommand);
 		}

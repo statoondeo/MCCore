@@ -2,4 +2,5 @@
 {
 	int Def { get; }
 	void Defense();
+	bool CanBeAttacked();
 }

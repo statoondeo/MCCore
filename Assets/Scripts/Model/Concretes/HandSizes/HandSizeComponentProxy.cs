@@ -3,8 +3,9 @@
 public class HandSizeComponentProxy : BaseComponentProxy<IHandSizeComponent>, IHandSizeComponentProxy
 {
 	public int Size => Wrapped.Size;
+	public int MaxSize => Wrapped.MaxSize;
 
-	public HandSizeComponentProxy(int size) : base(new HandSizeComponent(size)) { }
+	public HandSizeComponentProxy(int maxSize) : base(new HandSizeComponent(maxSize)) { }
 
 	public override string ToString()
 	{

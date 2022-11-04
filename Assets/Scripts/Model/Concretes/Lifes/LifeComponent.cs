@@ -9,5 +9,5 @@
 		Damages = 0;
 	}
 
-	public void DealDamage() { }
+	public void TakeDamage(int amount) { }
 }

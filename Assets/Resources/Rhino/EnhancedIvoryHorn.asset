@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: EnhancedIvoryHorn
   m_EditorClassIdentifier: 
-  Id: 
+  Id: fd1f52ca-1b7d-4126-ac80-6fdc8302e6d9
   Name: EnhancedIvory Horn
   Title: 
   Unique: 0

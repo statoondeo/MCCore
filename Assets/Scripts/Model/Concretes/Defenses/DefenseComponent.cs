@@ -5,4 +5,5 @@
 	public DefenseComponent(int def) : base() => Def = def;
 
 	public void Defense() { }
+	public bool CanBeAttacked() => true;
 }

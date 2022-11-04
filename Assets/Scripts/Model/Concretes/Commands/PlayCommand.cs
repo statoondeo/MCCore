@@ -1,7 +1,7 @@
 ﻿public class PlayCommand : MoveCommand
 {
 	protected IPlayableComponentProxy PlayableComponentProxy;
-	public PlayCommand(IPlayableComponentProxy playableComponentProxy, IBasicComponentProxy basicComponentProxy, string targetZone)
+	public PlayCommand(IPlayableComponentProxy playableComponentProxy, IBasicComponentProxy basicComponentProxy, (string, IPlayer) targetZone)
 		: base(basicComponentProxy, targetZone, CommandType.PLAY)
 		=> PlayableComponentProxy = playableComponentProxy;
 

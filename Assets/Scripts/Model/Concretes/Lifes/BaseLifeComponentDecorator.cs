@@ -5,5 +5,5 @@
 
 	protected BaseLifeComponentDecorator(IActivable owner) : base(owner) { }
 
-	public virtual void DealDamage() => Inner.DealDamage();
+	public virtual void TakeDamage(int amount) => Inner.TakeDamage(amount);
 }

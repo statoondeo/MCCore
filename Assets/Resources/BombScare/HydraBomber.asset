@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: HydraBomber
   m_EditorClassIdentifier: 
-  Id: 
+  Id: b28867b8-8a0f-4ae4-a743-b4ebdaa28e3f
   Name: Hydra Bomber
   Title: 
   Unique: 0

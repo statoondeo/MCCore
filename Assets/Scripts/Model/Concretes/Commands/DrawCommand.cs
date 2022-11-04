@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class DrawCommand : BaseCommand
+﻿public class DrawCommand : BaseCommand
 {
-	public DrawCommand() : base(CommandType.DRAW) { }
+	protected IPlayer Player;
+
+	public DrawCommand(IPlayer player) : base(CommandType.DRAW) => Player = player;
 
 	public override void Execute()
 	{
-		IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get(Zones.PLAYER_DECK).GetComponent<ITankComponentProxy>().Get();
-		cards[cards.Count - 1].GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.RECTO);
-		cards[cards.Count - 1].GetComponent<IBasicComponentProxy>().MoveTo(Zones.HAND);
+		ITankComponentProxy deck = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, Player)).GetComponent<ITankComponentProxy>();
+		IEntity card = deck.Get(deck.Count - 1);
+		card.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.RECTO);
+		IBasicComponentProxy basicComponentProxy = card.GetComponent<IBasicComponentProxy>();
+		basicComponentProxy.MoveTo(Zones.HAND);
 		base.Execute();
 	}
 }

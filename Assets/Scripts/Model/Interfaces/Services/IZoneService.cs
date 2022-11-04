@@ -1,1 +1,1 @@
-﻿public interface IZoneService : IIndexedTank<IEntity, string>, IService { }
+﻿public interface IZoneService : IIndexedTank<IEntity, (string, IPlayer)>, IService { }

@@ -7,7 +7,7 @@ public class LifeComponentProxy : BaseComponentProxy<ILifeComponent>, ILifeCompo
 
 	public LifeComponentProxy(int hitPoints) : base(new LifeComponent(hitPoints)) { }
 
-	public void DealDamage() => Wrapped.DealDamage();
+	public void TakeDamage(int amount) => Wrapped.TakeDamage(amount);
 
 	public override string ToString()
 	{

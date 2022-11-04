@@ -1,6 +1,6 @@
 ﻿public class PlayGenerateCommand : PlayCommand
 {
-	public PlayGenerateCommand(IPlayableComponentProxy playableComponentProxy, IBasicComponentProxy basicComponentProxy, string targetZone)
+	public PlayGenerateCommand(IPlayableComponentProxy playableComponentProxy, IBasicComponentProxy basicComponentProxy, (string, IPlayer) targetZone)
 		: base(playableComponentProxy, basicComponentProxy, targetZone)
 		=> PlayableComponentProxy = playableComponentProxy;
 

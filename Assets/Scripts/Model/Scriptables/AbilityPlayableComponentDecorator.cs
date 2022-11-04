@@ -7,10 +7,10 @@
 	public override void Play()
 	{
 		IEntity entity = ServiceLocator.Get<IEntityService>().Add(new Entity());
-		IBasicComponentProxy basicComponentProxy = entity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
+		IBasicComponentProxy basicComponentProxy = entity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(null));
 		ICommand command = PlayableCommandFactory.Create();
 		entity.AddComponent<IResolvableComponentProxy>(new ResolvableComponentProxy(new AbilityResolvableComponent(command)));
-		basicComponentProxy.MoveTo(Zones.STACK);
+		basicComponentProxy.MoveTo((Zones.STACK, null));
 		ServiceLocator.Get<IStackService>().EnqueueCommand(command);
 		Inner.Play();
 	}

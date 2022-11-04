@@ -3,15 +3,15 @@ using System.Linq;
 
 public class AlterEgoActionFlipHeroScenario : BaseScenario
 {
-	public AlterEgoActionFlipHeroScenario(ScriptableEntity hero) : base()
+	public AlterEgoActionFlipHeroScenario(IPlayer owner, ScriptableEntity hero) : base()
 	{
 		string captainMarvelId = string.Empty;
 		Commands.Add(new GenericCommand(() =>
 		{
-			IEntity captainMarvel = ServiceLocator.Get<IEntityService>().Add(hero.Create());
+			IEntity captainMarvel = ServiceLocator.Get<IEntityService>().Add(hero.Create(owner));
 			captainMarvelId = captainMarvel.Id;
 			IBasicComponentProxy basicComponent = captainMarvel.GetComponent<IBasicComponentProxy>();
-			ServiceLocator.Get<IStackService>().EnqueueCommand(basicComponent.MoveCommands[Zones.BATTLEFIELD]);
+			ServiceLocator.Get<IStackService>().EnqueueCommand(new GenericCommand(() => basicComponent.MoveTo((Zones.BATTLEFIELD, null))));
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{

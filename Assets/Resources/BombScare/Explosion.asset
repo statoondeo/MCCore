@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  Id: 
+  Id: 404d59d5-57c0-4aee-8f13-20bb1661a896
   Name: Explosion
   Title: 
   Unique: 0

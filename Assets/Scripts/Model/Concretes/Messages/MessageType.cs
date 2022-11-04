@@ -4,4 +4,5 @@
 	OnInterrupt,
 	OnForcedResponse,
 	OnResponse,
+	None,
 }

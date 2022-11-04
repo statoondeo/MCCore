@@ -1,28 +1,21 @@
 ﻿public class BasicComponent : BaseComponent, IBasicComponent
 {
-	public string Location { get; protected set; }
+	public IPlayer Owner { get; protected set; }
+	public (string, IPlayer) Location { get; protected set; }
 	public int Order { get; protected set; }
 
-	public BasicComponent() : base() { }
+	public BasicComponent(IPlayer owner) : base() => Owner = owner;
 
-	public bool CanMoveTo(string zoneId) => Location != zoneId;
-	public void MoveTo(string zoneId)
+	public bool CanMoveTo(string zoneId) => CanMoveTo((zoneId, Owner));
+	public bool CanMoveTo((string, IPlayer) zoneId) => Location != zoneId;
+	public void MoveTo(string zoneId) => MoveTo((zoneId, Owner));
+	public void MoveTo((string, IPlayer) zoneId)
 	{
-		IEntity entity;
-		ITankComponentProxy tankZone;
-		if (!string.IsNullOrWhiteSpace(Location))
-		{
-			entity = ServiceLocator.Get<IZoneService>().Get(Location);
-			tankZone = entity.GetComponent<ITankComponentProxy>();
-			tankZone.Remove(Entity);
-		}
+		IZoneService zoneService = ServiceLocator.Get<IZoneService>();
+		if ((null, null) != Location) zoneService.Get(Location).GetComponent<ITankComponentProxy>().Remove(Entity);
 
-		entity = ServiceLocator.Get<IZoneService>().Get(zoneId);
-		IZoneComponentProxy zone = entity.GetComponent<IZoneComponentProxy>();
-		tankZone = entity.GetComponent<ITankComponentProxy>();
-		tankZone.Add(Entity);
-
-		Location = zone.Key;
+		Location = zoneId;
+		zoneService.Get(Location).GetComponent<ITankComponentProxy>().Add(Entity);
 	}
 	public void SetOrder(int order) => Order = order;
 }

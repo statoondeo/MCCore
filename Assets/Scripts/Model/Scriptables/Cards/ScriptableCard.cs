@@ -12,10 +12,10 @@ public class ScriptableCard : ScriptableEntity
 	[SerializeField] protected Sprite Image;
 	[SerializeField] protected ScriptableBack Back;
 
-	public override IEntity Create()
+	public override IEntity Create(IPlayer owner)
 	{
-		IEntity card = new Entity();
-		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
+		IEntity card = new Entity(Id);
+		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
 		IFaceContainerComponentProxy faceContainerComponentProxy = card.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());
 
 		IEntity face = new Entity();
@@ -23,7 +23,7 @@ public class ScriptableCard : ScriptableEntity
 		face.AddComponent<ICardComponentProxy>(new CardComponentProxy(ServiceLocator.Get<ICardTypeService>().Get(CardType.Key), ServiceLocator.Get<IClassificationService>().Get(Classification.Key)));
 		faceContainerComponentProxy.RegisterFace(new FaceComponentProxy("RECTO", face));
 
-		faceContainerComponentProxy.RegisterFace(new FaceComponentProxy("VERSO", Back.Create()));
+		faceContainerComponentProxy.RegisterFace(new FaceComponentProxy("VERSO", Back.Create(owner)));
 
 		return (card);
 	}
