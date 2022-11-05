@@ -49,7 +49,8 @@ public class PlayerSetupScenario : BaseScenario
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Set aside nemesis cards
-			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<ITankComponentProxy>().Get(new ClassificationFilterStrategy(Classifications.NEMESIS));
+			IList<IEntity> cards = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, player)).GetComponent<ITankComponentProxy>()
+									.Get(new ClassificationFilterStrategy(Classifications.NEMESIS));
 			for (int i = 0; i < cards.Count; i++) cards[i].GetComponent<IBasicComponentProxy>().MoveTo(Zones.EXIL);
 
 		}));
@@ -67,9 +68,6 @@ public class PlayerSetupScenario : BaseScenario
 
 		Commands.Add(new GenericCommand(() =>
 		{
-			// Create player
-			//ServiceLocator.Get<IPlayerService>().Add("VILLAIN", new Player("VILLAIN"));
-
 			// Create player deck
 			List<IEntity> deckList = new();
 			for (int i = 0; i < villainDeck.Length; i++) deckList.AddRange(villainDeck[i].Create(villain));
@@ -99,11 +97,14 @@ public class PlayerSetupScenario : BaseScenario
 			// Select Main Scheme
 			IEntity mainScheme = ServiceLocator.Get<IZoneService>().Get((Zones.DECK, villain)).GetComponent<ITankComponentProxy>().GetFirst(new CardTypesFilterStrategy(CardTypes.MAIN_SCHEME));
 
-			// Flip to Alter-ego face
-			mainScheme.GetComponent<IFaceContainerComponentProxy>().FlipTo("1");
+			// Flip to first stage
+			mainScheme.GetComponent<IFaceContainerComponentProxy>().FlipTo(Faces.STAGE_1);
 
 			// Move to Battlefield
 			mainScheme.GetComponent<IBasicComponentProxy>().MoveTo((Zones.BATTLEFIELD, null));
+
+			// Register scheme loose condition
+			ServiceLocator.Get<IStateBasedEffectService>().Register(new SchemePlayerWinStateBasedEffect(villain));
 		}));
 		Commands.Add(new GenericCommand(() =>
 		{
@@ -148,7 +149,7 @@ public class PlayerSetupScenario : BaseScenario
 		Commands.Add(new GenericCommand(() =>
 		{
 			// Hero Setup
-			player.Identity.GetComponent<ISetupComponentProxy>()?.Setup();
+			player.Identity.GetActiveFaceComponent<ISetupComponentProxy>()?.Setup();
 		}));
 
 		#endregion

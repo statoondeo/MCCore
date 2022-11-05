@@ -1,0 +1,1 @@
+﻿public interface IThresholdAccelerationComponentDecorator : IComponentDecorator<IThresholdAccelerationComponent>, IThresholdAccelerationComponent { }

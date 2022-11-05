@@ -30,6 +30,7 @@ public abstract class IndexedTankService<T, U> : IIndexedTank<T, U>
 
 		return (CachedList);
 	}
+	public int Count() => CachedList.Count;
 
 	public virtual IService Initialize() => this;
 }

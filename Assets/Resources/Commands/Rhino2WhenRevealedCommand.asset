@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acde66bdd9bd1a54f84d11235e864f12, type: 3}
   m_Name: Rhino2WhenRevealedCommand
   m_EditorClassIdentifier: 
-  SearchedCard: {fileID: 11400000, guid: c9fc4943ed357324f80e19d2a0014beb, type: 2}
+  SearchedCard: {fileID: 11400000, guid: 0a2bbd4b3633bf34e88a03f033bd31ff, type: 2}

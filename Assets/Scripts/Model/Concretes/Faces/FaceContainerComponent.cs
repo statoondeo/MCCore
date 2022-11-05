@@ -7,8 +7,6 @@ public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 
 	public FaceContainerComponent() : base() => Faces = new Dictionary<string, IFaceComponentProxy>();
 
-	protected void ChangeFace(string faceName) => ActiveFace = Faces[faceName];
-
 	public bool CanFlipTo(string faceName) => Faces.ContainsKey(faceName) && ActiveFace != Faces[faceName];
 	public void FlipTo(string faceName)
 	{

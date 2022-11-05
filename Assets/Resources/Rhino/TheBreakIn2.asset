@@ -17,3 +17,7 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 18c4276656cad634abe3187fd1ce5482, type: 3}
   Stage: 2
   SetupAbility: {fileID: 0}
+  IsScheme: 1
+  Threshold: {fileID: 11400000, guid: 43d5678ae94b059438278b7202f7235c, type: 2}
+  Acceleration: {fileID: 11400000, guid: 6d1631ca42ac98841b22898abb5ce68c, type: 2}
+  Threat: {fileID: 11400000, guid: bbd4b7d809172034486e42836fd34cc7, type: 2}

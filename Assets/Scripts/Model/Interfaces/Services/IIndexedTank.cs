@@ -6,4 +6,5 @@ public interface IIndexedTank<T, U> : IService
 	void Remove(U itemId);
 	T Get(U itemId);
 	IList<T> Get();
+	int Count();
 }

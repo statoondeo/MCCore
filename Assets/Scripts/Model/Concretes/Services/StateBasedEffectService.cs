@@ -20,4 +20,10 @@ public class StateBasedEffectService : TankService<IStateBasedEffect>, IStateBas
 	public void UnRegister(IStateBasedEffect stateBasedEffect) => Remove(stateBasedEffect);
 	public void Mute() => CheckAction = () => { };
 	public void UnMute() => CheckAction = UnMutedCheck;
+	public override IService Initialize()
+	{
+		Register(new CharacterDefeatedStateBasedEffect());
+		Register(new SideSchemeDefeatedStateBasedEffect());
+		return base.Initialize();
+	}
 }

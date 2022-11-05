@@ -7,7 +7,7 @@
 		for (int i = 0; i < players.Length; i++)
 		{
 			Add(players[i].Name, players[i]);
-			stateBasedEffectService.Register(new PlayerLossStateBasedEffect(players[i]));
+			stateBasedEffectService.Register(new LifePlayerLossStateBasedEffect(players[i]));
 		}
 	}
 }

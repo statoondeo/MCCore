@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
+  m_Script: {fileID: 11500000, guid: 895660d8a071293478b5faff2fc84a3a, type: 3}
   m_Name: BreakinAndTakin
   m_EditorClassIdentifier: 
   Id: 1497f5a1-72c6-4450-b618-46b0e6affc14
   Name: Breakin' & Takin'
   Title: 
   Unique: 0
-  CardType: {fileID: 11400000, guid: 98e14212759a81c4ab3f6f746bfe3482, type: 2}
   Classification: {fileID: 11400000, guid: 6733f1a578ca544409977d700f9e1f3e, type: 2}
+  Threat: {fileID: 11400000, guid: 3c4eda002ec62454892adb7123a4c9c3, type: 2}
+  WhenRevealedAbility: {fileID: 11400000, guid: d763c64223005964b8d42ffc87dc7100, type: 2}
   Image: {fileID: 21300000, guid: 1533698d6a323344c928b0ad206a10dc, type: 3}
   Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}

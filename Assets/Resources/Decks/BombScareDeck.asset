@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BombScareDeck
   m_EditorClassIdentifier: 
   Cards:
-  - {fileID: 11400000, guid: c2d7a8347ae01e742b0525c1ac5e0f1c, type: 2}
+  - {fileID: 11400000, guid: 3bedba4cb73421e4b9c40240df6b3e70, type: 2}
   - {fileID: 11400000, guid: 8a4c30569ea7e9549befb80a4406e5e6, type: 2}
   - {fileID: 11400000, guid: 8a4c30569ea7e9549befb80a4406e5e6, type: 2}
   - {fileID: 11400000, guid: 7e4db64209096f749ad7201a7baae90d, type: 2}

@@ -1,11 +1,8 @@
-﻿
-using UnityEngine;
-
-public class FlipCardCommand : ICommand
+﻿public class FlipToNextStageCommand : ICommand
 {
 	protected IEntity Card;
 
-	public FlipCardCommand(IEntity player) => Card = player;
+	public FlipToNextStageCommand(IEntity player) => Card = player;
 
 	public string Type => throw new System.NotImplementedException();
 	public bool Done { get; protected set; }

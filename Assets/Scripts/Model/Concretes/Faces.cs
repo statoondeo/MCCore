@@ -4,4 +4,5 @@
 	public static readonly string ALTER_EGO = "ALTER_EGO";
 	public static readonly string RECTO = "RECTO";
 	public static readonly string VERSO = "VERSO";
+	public static readonly string STAGE_1 = "1";
 }

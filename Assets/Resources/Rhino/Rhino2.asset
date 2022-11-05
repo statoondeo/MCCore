@@ -15,18 +15,18 @@ MonoBehaviour:
   Id: bf549a95-0cb5-4dec-9f85-a56f9b4334cf
   Name: Rhino
   Face1Stage: 2
-  Face1Scheme: 1
-  Face1Attack: 3
-  Face1HitPoints: 15
+  Face1Scheme: {fileID: 11400000, guid: 03d8b1945ce1d9447bd46699772ae085, type: 2}
+  Face1Attack: {fileID: 11400000, guid: b0d78f42b57cab549854ae24761defc6, type: 2}
+  Face1HitPoints: {fileID: 11400000, guid: 65418ce1d028cff408d1b688d4a5d441, type: 2}
   Face1Traits:
   - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
   - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
   Face1WhenRevealedAbility: {fileID: 11400000, guid: 2ea811a36cf030f479c40baa04865b1d, type: 2}
   Face1Image: {fileID: 21300000, guid: a6c88f68ec632ca4caf9cdd00db5683a, type: 3}
   Face2Stage: 3
-  Face2Scheme: 1
-  Face2Attack: 4
-  Face2HitPoints: 16
+  Face2Scheme: {fileID: 11400000, guid: 03d8b1945ce1d9447bd46699772ae085, type: 2}
+  Face2Attack: {fileID: 11400000, guid: 556257d2da92a88418bc45d8aff04d50, type: 2}
+  Face2HitPoints: {fileID: 11400000, guid: b272008270dee2a44bed7fc9f8cf9c51, type: 2}
   Face2Traits:
   - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
   - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
