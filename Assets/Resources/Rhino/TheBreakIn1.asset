@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851df104ea6eac44688827c3c30ae512, type: 3}
+  m_Name: TheBreakIn1
+  m_EditorClassIdentifier: 
+  Id: a6235e3e-2d5e-4b3d-9a2c-d909ce2e9366
+  Name: The Break-In!
+  Image: {fileID: 21300000, guid: e82695452681a1647b818d757864c32e, type: 3}
+  Stage: 1
+  SetupAbility: {fileID: 11400000, guid: 41134f6d762fd5d49a9cacaa04ffb2a2, type: 2}

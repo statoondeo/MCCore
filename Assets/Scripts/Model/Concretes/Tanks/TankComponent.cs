@@ -26,10 +26,18 @@ public class TankComponent : BaseComponent, ITankComponent
 		IList<IEntity> result = new List<IEntity>();
 		for (int i = 0; i < entities.Count; i++)
 		{
-			IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
-			IList<string> faces = faceContainer.Faces.Keys.ToList();
-			for (int j = 0; j < faces.Count; j++)
-				if (filter.Filter(faceContainer.Faces[faces[j]].Face)) result.Add(entities[i]);
+			if (filter.Filter(entities[i])) result.Add(entities[i]);
+			else
+			{
+				IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
+				IList<string> faces = faceContainer.Faces.Keys.ToList();
+				for (int j = 0; j < faces.Count; j++)
+					if (filter.Filter(faceContainer.Faces[faces[j]].Face))
+					{
+						result.Add(entities[i]);
+						break;
+					}
+			}
 		}
 		return (result);
 	}
@@ -39,10 +47,13 @@ public class TankComponent : BaseComponent, ITankComponent
 		for (int i = 0; i < entities.Count; i++)
 		{
 			if (filter.Filter(entities[i])) return (entities[i]);
-			IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
-			IList<string> faces = faceContainer.Faces.Keys.ToList();
-			for (int j = 0; j < faces.Count; j++)
-				if (filter.Filter(faceContainer.Faces[faces[j]].Face)) return (entities[i]);
+			else
+			{
+				IFaceContainerComponentProxy faceContainer = entities[i].GetComponent<IFaceContainerComponentProxy>();
+				IList<string> faces = faceContainer.Faces.Keys.ToList();
+				for (int j = 0; j < faces.Count; j++)
+					if (filter.Filter(faceContainer.Faces[faces[j]].Face)) return (entities[i]);
+			}
 		}
 		return (null);
 	}

@@ -2,7 +2,7 @@
 
 public class WhenRevealedComponentProxy : BaseComponentProxy<IWhenRevealedComponent>, IWhenRevealedComponentProxy
 {
-	public WhenRevealedComponentProxy() : base(new WhenRevealedComponent()) { }
+	public WhenRevealedComponentProxy(ICommand command) : base(new WhenRevealedComponent(command)) { }
 
 	public void WhenRevealed() => Wrapped.WhenRevealed();
 

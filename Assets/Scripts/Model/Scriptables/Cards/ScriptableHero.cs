@@ -34,12 +34,12 @@ public class ScriptableHero : ScriptableEntity
 		for (int i = 0; i < AETraits.Length; i++) traits[i] = traitService.Get(AETraits[i].Key);
 		face.AddComponent<ITraitComponentProxy>(new TraitComponentProxy(traits));
 		face.AddComponent<IRecoverComponentProxy>(new RecoverComponentProxy(Recover));
-		IPlayableContainerComponentProxy playableContainerComponent = face.AddComponent<IPlayableContainerComponentProxy>(new PlayableContainerComponentProxy());
-		for (int i = 0; i < AEAbilities.Length; i++)
-		{
-			IPlayableComponentProxy playable = playableContainerComponent.RegisterPlayable(new PlayableGenerateComponentProxy(string.Empty, new PlayableGeneratorComponent(string.Empty)));
-			playable.Register(new AbilityPlayableComponentDecorator(playable, AEAbilities[i]));
-		}
+		//IPlayableContainerComponentProxy playableContainerComponent = face.AddComponent<IPlayableContainerComponentProxy>(new PlayableContainerComponentProxy());
+		//for (int i = 0; i < AEAbilities.Length; i++)
+		//{
+		//	IPlayableComponentProxy playable = playableContainerComponent.RegisterPlayable(new PlayableGenerateComponentProxy(string.Empty, new PlayableGeneratorComponent(string.Empty)));
+		//	playable.Register(new AbilityPlayableComponentDecorator(playable, AEAbilities[i]));
+		//}
 		face.AddComponent<IHandSizeComponentProxy>(new HandSizeComponentProxy(AEHandSize));
 		return (face);
 	}
@@ -55,20 +55,20 @@ public class ScriptableHero : ScriptableEntity
 		face.AddComponent<IThwartComponentProxy>(new ThwartComponentProxy(Thwart));
 		face.AddComponent<IAttackComponentProxy>(new AttackComponentProxy(Attack));
 		face.AddComponent<IDefenseComponentProxy>(new DefenseComponentProxy(Defense));
-		IPlayableContainerComponentProxy playableContainerComponent = face.AddComponent<IPlayableContainerComponentProxy>(new PlayableContainerComponentProxy());
-		for (int i = 0; i < HeroAbilities.Length; i++)
-		{
-			IPlayableComponentProxy playable = playableContainerComponent.RegisterPlayable(new PlayableGenerateComponentProxy(string.Empty, new PlayableGeneratorComponent(string.Empty)));
-			playable.Register(new AbilityPlayableComponentDecorator(playable, HeroAbilities[i]));
-		}
+		//IPlayableContainerComponentProxy playableContainerComponent = face.AddComponent<IPlayableContainerComponentProxy>(new PlayableContainerComponentProxy());
+		//for (int i = 0; i < HeroAbilities.Length; i++)
+		//{
+		//	IPlayableComponentProxy playable = playableContainerComponent.RegisterPlayable(new PlayableGenerateComponentProxy(string.Empty, new PlayableGeneratorComponent(string.Empty)));
+		//	playable.Register(new AbilityPlayableComponentDecorator(playable, HeroAbilities[i]));
+		//}
 		face.AddComponent<IHandSizeComponentProxy>(new HandSizeComponentProxy(HeroHandSize));
 		return (face);
 	}
 
 	public override IEntity Create(IPlayer owner)
 	{
-		IEntity identity = new Entity(Id);
-		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
+		IEntity identity = new Entity(Id, owner);
+		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
 		identity.AddComponent<ILifeComponentProxy>(new LifeComponentProxy(HitPoints));
 
 		IFaceContainerComponentProxy faceContainer = identity.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());

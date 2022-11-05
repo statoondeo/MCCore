@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7bbad3e83fe6384cb4bff88e9b6028e, type: 3}
+  m_Script: {fileID: 11500000, guid: 941d814424b6fce4ebec04ce591e0bd9, type: 3}
   m_Name: TheBreakIn
   m_EditorClassIdentifier: 
-  Id: 8f7d2a1c-2004-420e-9055-a2988dbe709b
-  Name: The Break-In!
-  Title: 
-  Unique: 0
-  CardType: {fileID: 11400000, guid: 4421613143b0c254d97e070e63a4e963, type: 2}
-  Classification: {fileID: 11400000, guid: 6733f1a578ca544409977d700f9e1f3e, type: 2}
-  Image: {fileID: 21300000, guid: e82695452681a1647b818d757864c32e, type: 3}
-  Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}
+  Id: cbbd49c2-9319-4745-a89a-ce7c807b221c
+  FacesList:
+  - {fileID: 11400000, guid: 28cd7809ae72ef24ebf88a1c41b251b3, type: 2}
+  - {fileID: 11400000, guid: 9fa1db7b991d63b4abc3bf4dd58200cf, type: 2}

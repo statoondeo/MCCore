@@ -3,6 +3,7 @@
 public interface IEntity : IActivable
 {
 	string Id { get; }
+	IPlayer Owner { get; }
 	T GetComponent<T>() where T : class;
 	IList<IComponent> GetComponents();
 	T AddComponent<T>(IComponent component) where T : IComponent;

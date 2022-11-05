@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 public class BasicComponentProxy : BaseComponentProxy<IBasicComponent>, IBasicComponentProxy
 {
 	public (string, IPlayer) Location => Wrapped.Location;
 	public int Order => Wrapped.Order;
 
-	public BasicComponentProxy(IPlayer owner) : base(new BasicComponent(owner)) { }
+	public BasicComponentProxy() : base(new BasicComponent()) { }
 
 	public bool CanMoveTo(string zoneId) => Wrapped.CanMoveTo(zoneId);
 	public bool CanMoveTo((string, IPlayer) zoneId) => Wrapped.CanMoveTo(zoneId);

@@ -14,8 +14,8 @@ public class ScriptableCard : ScriptableEntity
 
 	public override IEntity Create(IPlayer owner)
 	{
-		IEntity card = new Entity(Id);
-		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
+		IEntity card = new Entity(Id, owner);
+		card.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
 		IFaceContainerComponentProxy faceContainerComponentProxy = card.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());
 
 		IEntity face = new Entity();

@@ -602,12 +602,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: Statoondeo
+  VillainName: 
   PlayerDeck:
   - {fileID: 11400000, guid: 38777739fc207384797a70c5728e8fd7, type: 2}
   - {fileID: 11400000, guid: 8a23b0f03e2fcea43ae5004ea109c54e, type: 2}
   - {fileID: 11400000, guid: aaaaf735c2809174e91cbad048199a9b, type: 2}
   VillainDeck:
-  - {fileID: 11400000, guid: b21f3a74d1e94d54c90337e95c4385d0, type: 2}
+  - {fileID: 11400000, guid: 97187b6c99e09f640ae768d14a9e6045, type: 2}
   - {fileID: 11400000, guid: ed810234ae4ee1240a4e84d16112e8c0, type: 2}
   - {fileID: 11400000, guid: 69ca2998ca0e9cd4b96ba9d81c513261, type: 2}
 --- !u!4 &1778616343

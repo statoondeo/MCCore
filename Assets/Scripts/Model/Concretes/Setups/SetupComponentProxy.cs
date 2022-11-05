@@ -2,7 +2,7 @@
 
 public class SetupComponentProxy : BaseComponentProxy<ISetupComponent>, ISetupComponentProxy
 {
-	public SetupComponentProxy() : base(new SetupComponent()) { }
+	public SetupComponentProxy(ICommand command) : base(new SetupComponent(command)) { }
 
 	public void Setup() => Wrapped.Setup();
 

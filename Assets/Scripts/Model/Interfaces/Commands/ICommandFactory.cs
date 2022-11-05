@@ -1,4 +1,4 @@
 ﻿public interface ICommandFactory
 {
-	ICommand Create();
+	ICommand Create(IEntity parentEntity);
 }

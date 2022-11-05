@@ -1,6 +1,8 @@
 ﻿public class WhenRevealedComponent : BaseComponent, IWhenRevealedComponent
 {
-	public WhenRevealedComponent() : base() { }
+	protected ICommand Command;
 
-	public void WhenRevealed() { }
+	public WhenRevealedComponent(ICommand command) : base() => Command = command;
+
+	public void WhenRevealed() => Command.Execute();
 }

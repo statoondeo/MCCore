@@ -21,7 +21,7 @@ MonoBehaviour:
   Face1Traits:
   - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
   - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
-  Face1Abilities: []
+  Face1WhenRevealedAbility: {fileID: 11400000, guid: 2ea811a36cf030f479c40baa04865b1d, type: 2}
   Face1Image: {fileID: 21300000, guid: a6c88f68ec632ca4caf9cdd00db5683a, type: 3}
   Face2Stage: 3
   Face2Scheme: 1
@@ -30,5 +30,5 @@ MonoBehaviour:
   Face2Traits:
   - {fileID: 11400000, guid: a3908650948823343873f068cee525e3, type: 2}
   - {fileID: 11400000, guid: 4f4e249d24c4cb04e94d35bdcec898e3, type: 2}
-  Face2Abilities: []
+  Face2WhenRevealedAbility: {fileID: 0}
   Face2Image: {fileID: 21300000, guid: 6530870ceabfd584d89e4a282749b5af, type: 3}

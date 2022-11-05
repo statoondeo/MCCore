@@ -12,7 +12,7 @@ public class ScriptableVillain : ScriptableEntity
 	[SerializeField] protected int Face1Attack;
 	[SerializeField] protected int Face1HitPoints;
 	[SerializeField] protected ScriptableTrait[] Face1Traits;
-	[SerializeField] protected ScriptableCommand[] Face1Abilities;
+	[SerializeField] protected ScriptableCommand Face1WhenRevealedAbility;
 	[SerializeField] protected Sprite Face1Image;
 
 	[Header("Face 2 Attributes")]
@@ -21,14 +21,14 @@ public class ScriptableVillain : ScriptableEntity
 	[SerializeField] protected int Face2Attack;
 	[SerializeField] protected int Face2HitPoints;
 	[SerializeField] protected ScriptableTrait[] Face2Traits;
-	[SerializeField] protected ScriptableCommand[] Face2Abilities;
+	[SerializeField] protected ScriptableCommand Face2WhenRevealedAbility;
 	[SerializeField] protected Sprite Face2Image;
 
 	protected ITraitService TraitService;
 	protected ICardType VillainCardType;
 	protected IClassification VillainClassification;
 
-	protected IEntity CreateFace(int stage, int scheme, int attack, int hitPoints, ScriptableTrait[] traits, ScriptableCommand[] abilities, Sprite image)
+	protected IEntity CreateFace(IEntity parentEntity, int stage, int scheme, int attack, int hitPoints, ScriptableTrait[] traits, ScriptableCommand ability, Sprite image)
 	{
 		IEntity face = new FaceEntity();
 		face.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, image));
@@ -40,12 +40,7 @@ public class ScriptableVillain : ScriptableEntity
 		face.AddComponent<IAttackComponentProxy>(new AttackComponentProxy(attack));
 		face.AddComponent<ILifeComponentProxy>(new LifeComponentProxy(hitPoints));
 		face.AddComponent<IStageComponentProxy>(new StageComponentProxy(stage));
-		//IPlayableContainerComponentProxy playableContainerComponent = face.AddComponent<IPlayableContainerComponentProxy>(new PlayableContainerComponentProxy());
-		//for (int i = 0; i < abilities.Length; i++)
-		//{
-		//	IPlayableComponentProxy playable = playableContainerComponent.RegisterPlayable(new PlayableGenerateComponentProxy(string.Empty, new PlayableGeneratorComponent(string.Empty)));
-		//	playable.Register(new AbilityPlayableComponentDecorator(playable, abilities[i]));
-		//}
+		if (null != ability) face.AddComponent<IWhenRevealedComponentProxy>(new WhenRevealedComponentProxy(ability.Create(parentEntity)));
 
 		return (face);
 	}
@@ -56,12 +51,12 @@ public class ScriptableVillain : ScriptableEntity
 		VillainCardType = ServiceLocator.Get<ICardTypeService>().Get(CardTypes.VILLAIN);
 		VillainClassification = ServiceLocator.Get<IClassificationService>().Get(Classifications.VILLAIN);
 
-		IEntity identity = new Entity(Id);
-		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy(owner));
+		IEntity identity = new Entity(Id, owner);
+		identity.AddComponent<IBasicComponentProxy>(new BasicComponentProxy());
 
 		IFaceContainerComponentProxy faceContainer = identity.AddComponent<IFaceContainerComponentProxy>(new FaceContainerComponentProxy());
-		faceContainer.RegisterFace(new FaceComponentProxy(Faces.RECTO, CreateFace(Face1Stage, Face1Scheme, Face1Attack, Face1HitPoints, Face1Traits, Face1Abilities, Face1Image)));
-		faceContainer.RegisterFace(new FaceComponentProxy(Faces.VERSO, CreateFace(Face2Stage, Face2Scheme, Face2Attack, Face2HitPoints, Face2Traits, Face2Abilities, Face2Image)));
+		faceContainer.RegisterFace(new FaceComponentProxy(Faces.RECTO, CreateFace(identity, Face1Stage, Face1Scheme, Face1Attack, Face1HitPoints, Face1Traits, Face1WhenRevealedAbility, Face1Image)));
+		faceContainer.RegisterFace(new FaceComponentProxy(Faces.VERSO, CreateFace(identity, Face2Stage, Face2Scheme, Face2Attack, Face2HitPoints, Face2Traits, Face2WhenRevealedAbility, Face2Image)));
 
 		return (identity);
 	}

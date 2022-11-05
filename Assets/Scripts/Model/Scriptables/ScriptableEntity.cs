@@ -2,7 +2,6 @@
 
 public abstract class ScriptableEntity : ScriptableObject
 {
-	[SerializeField] protected string Id;
-
+	public string Id;
 	public abstract IEntity Create(IPlayer owner);
 }

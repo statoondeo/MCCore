@@ -7,15 +7,18 @@ public class Entity : IEntity
 {
 	public string Id { get; protected set; }
 	public bool IsActive { get; protected set; }
+	public IPlayer Owner { get; protected set; }
 
 	protected IDictionary<Type, IComponent> Components;
 
-	public Entity() : this(Guid.NewGuid().ToString()) { }
-	public Entity(string id)
+	public Entity() : this(null) { }
+	public Entity(IPlayer owner) : this(Guid.NewGuid().ToString(), owner) { }
+	public Entity(string id, IPlayer owner)
 	{
 		Id = id;
 		Components = new Dictionary<Type, IComponent>();
 		SetActive(true);
+		Owner = owner;
 	}
 
 	public void SetActive(bool active) => IsActive = active;

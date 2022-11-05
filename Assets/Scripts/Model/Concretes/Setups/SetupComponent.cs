@@ -1,6 +1,8 @@
 ﻿public class SetupComponent : BaseComponent, ISetupComponent
 {
-	public SetupComponent() : base() { }
+	protected ICommand Command;
 
-	public void Setup() { }
+	public SetupComponent(ICommand command) : base() => Command = command;
+
+	public void Setup() => Command.Execute();
 }
