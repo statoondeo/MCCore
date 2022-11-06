@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941d814424b6fce4ebec04ce591e0bd9, type: 3}
+  m_Name: UndergroundDistribution
+  m_EditorClassIdentifier: 
+  Id: b0c000c3-1e7e-447b-8a2d-69e87c47b299
+  FacesList:
+  - {fileID: 11400000, guid: 16c810dcf3603d54eae32d2a1c1d9db7, type: 2}
+  - {fileID: 11400000, guid: e1d13b06c50977c4e8eb893005780afb, type: 2}

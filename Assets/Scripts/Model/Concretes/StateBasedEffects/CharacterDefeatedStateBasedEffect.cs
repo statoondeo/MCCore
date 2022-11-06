@@ -12,7 +12,7 @@ public class CharacterDefeatedStateBasedEffect : IStateBasedEffect
 		for (int i = 0; i < characters.Count; i++)
 		{
 			ILifeComponentProxy lifeComponentProxy = characters[i].GetActiveFaceComponent<ILifeComponentProxy>();
-			if (lifeComponentProxy.Damages >= lifeComponentProxy.HitPoints)
+			if ((null != lifeComponentProxy) && (lifeComponentProxy.Damages >= lifeComponentProxy.HitPoints))
 			{
 				messageService.Raise((MessageType.None, Messages.CHARACTER_DEFEATED));
 				characters[i].GetComponent<IBasicComponentProxy>().MoveTo(Zones.DISCARD);

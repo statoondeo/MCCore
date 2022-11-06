@@ -7,8 +7,9 @@ public class ScriptableMainSchemeFace : ScriptableObject
 	[SerializeField] protected string Id;
 	[SerializeField] protected string Name;
 	[SerializeField] protected Sprite Image;
-	[SerializeField] protected int Stage;
+	[SerializeField] protected string Stage;
 	[SerializeField] protected ScriptableCommand SetupAbility;
+	[SerializeField] protected ScriptableCommand WhenRevealedAbility;
 
 	[Header("Scheme Attributes")]
 	[SerializeField] protected bool IsScheme;
@@ -23,6 +24,7 @@ public class ScriptableMainSchemeFace : ScriptableObject
 		face.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, Image));
 		face.AddComponent<IStageComponentProxy>(new StageComponentProxy(Stage));
 		if (null != SetupAbility) face.AddComponent<ISetupComponentProxy>(new SetupComponentProxy(SetupAbility.Create(entity)));
+		if (null != WhenRevealedAbility) face.AddComponent<IWhenRevealedComponentProxy>(new WhenRevealedComponentProxy(WhenRevealedAbility.Create(entity)));
 		if (IsScheme)
 		{
 			face.AddComponent<IThresholdAccelerationComponentProxy>(new ThresholdAccelerationComponentProxy(Threshold.GetValue(), Acceleration.GetValue()));

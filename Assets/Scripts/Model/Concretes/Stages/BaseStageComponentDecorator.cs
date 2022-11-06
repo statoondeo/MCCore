@@ -1,6 +1,6 @@
 ﻿public abstract class BaseStageComponentDecorator : BaseComponentDecorator<IStageComponent>, IStageComponentDecorator
 {
-	public virtual int Stage => Inner.Stage;
+	public virtual string Stage => Inner.Stage;
 
 	protected BaseStageComponentDecorator(IActivable owner) : base(owner) { }
 }

@@ -19,4 +19,5 @@
 	public static readonly string FLIP = "FLIP";
 	public static readonly string MOVE = "MOVE";
 	public static readonly string PLAY = "PLAY";
+	public static readonly string ENTER_BATTLEFIELD = "ENTER_BATTLEFIELD";
 }

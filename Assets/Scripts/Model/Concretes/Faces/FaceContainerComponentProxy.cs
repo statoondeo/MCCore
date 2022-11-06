@@ -11,6 +11,7 @@ public class FaceContainerComponentProxy : BaseComponentProxy<IFaceContainerComp
 
 	public bool CanFlipTo(string faceName) => Wrapped.CanFlipTo(faceName);
 	public void FlipTo(string faceName) => Wrapped.FlipTo(faceName);
+	public void FlipToNext() => Wrapped.FlipToNext();
 	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face)
 	{
 		FlipCommands.Add(face.Name, new FlipCommand(this, face.Name));

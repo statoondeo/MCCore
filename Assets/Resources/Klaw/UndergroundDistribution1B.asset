@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851df104ea6eac44688827c3c30ae512, type: 3}
+  m_Name: UndergroundDistribution1B
+  m_EditorClassIdentifier: 
+  Id: ba558cd4-4153-4656-9646-0c998a7ae141
+  Name: Underground Distribution
+  Image: {fileID: 0}
+  Stage: 1B
+  SetupAbility: {fileID: 0}
+  WhenRevealedAbility: {fileID: 11400000, guid: 39e3a345eddfff24693d6e9259ffd2ba, type: 2}
+  IsScheme: 1
+  Threshold: {fileID: 11400000, guid: 4acd2933a38d62a4797f89ff500bdcf8, type: 2}
+  Acceleration: {fileID: 11400000, guid: 6d1631ca42ac98841b22898abb5ce68c, type: 2}
+  Threat: {fileID: 11400000, guid: bbd4b7d809172034486e42836fd34cc7, type: 2}

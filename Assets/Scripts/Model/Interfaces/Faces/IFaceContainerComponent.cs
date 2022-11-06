@@ -6,5 +6,6 @@ public interface IFaceContainerComponent : IComponent
 	IDictionary<string, IFaceComponentProxy> Faces { get; }
 	bool CanFlipTo(string faceName);
 	void FlipTo(string faceName);
+	void FlipToNext();
 	IFaceComponentProxy RegisterFace(IFaceComponentProxy face);
 }

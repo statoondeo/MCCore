@@ -15,5 +15,9 @@ MonoBehaviour:
   Id: a6235e3e-2d5e-4b3d-9a2c-d909ce2e9366
   Name: The Break-In!
   Image: {fileID: 21300000, guid: e82695452681a1647b818d757864c32e, type: 3}
-  Stage: 1
+  Stage: 1A
   SetupAbility: {fileID: 11400000, guid: 41134f6d762fd5d49a9cacaa04ffb2a2, type: 2}
+  IsScheme: 0
+  Threshold: {fileID: 0}
+  Acceleration: {fileID: 0}
+  Threat: {fileID: 0}

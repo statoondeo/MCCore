@@ -1,37 +1,15 @@
-﻿public class CompositeCommand : BaseCommand
+﻿public class CompositeCommand : ICommand
 {
 	protected ICommand[] Commands;
 
-	public CompositeCommand(ICommand[] commands, string type) : base(type) => Commands = commands;
+	public CompositeCommand(params ICommand[] commands) => Commands = commands;
 
-	public override bool Done
+	public string Type => CommandType.NONE;
+	public bool Done { get; protected set; }
+	public bool CanExecute() => true;
+	public void Execute()
 	{
-		get
-		{
-			bool done = true;
-			int i = 0;
-			while (done && (i < Commands.Length))
-			{
-				done = done && Commands[i].Done;
-				i++;
-			}
-			return (done);
-		}
-	}
-	public override bool CanExecute()
-	{
-		bool canExecute = true;
-		int i = 0;
-		while (canExecute && (i < Commands.Length))
-		{
-			canExecute = canExecute && Commands[i].CanExecute();
-			i++;
-		}
-		return (canExecute);
-	}
-	public override void Execute()
-	{
-		for (int i = 0; i < Commands.Length; i++) ServiceLocator.Get<IStackService>().EnqueueCommand(Commands[i]);
-		base.Execute();
+		for (int i = 0; i < Commands.Length; i++) Commands[i].Execute();
+		Done = true;
 	}
 }

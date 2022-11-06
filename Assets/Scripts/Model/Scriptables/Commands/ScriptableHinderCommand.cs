@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Hinder Command", menuName = "Commands/Hinder Command")]
+[CreateAssetMenu(fileName = "Command", menuName = "Commands/Hinder Command")]
 public class ScriptableHinderCommand : ScriptableCommand
 {
 	[SerializeField] protected ScriptableValue Value;

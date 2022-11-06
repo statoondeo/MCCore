@@ -4,5 +4,5 @@
 
 	public WhenRevealedComponent(ICommand command) : base() => Command = command;
 
-	public void WhenRevealed() => Command.Execute();
+	public void WhenRevealed() => ServiceLocator.Get<IStackService>().EnqueueCommand(Command);
 }

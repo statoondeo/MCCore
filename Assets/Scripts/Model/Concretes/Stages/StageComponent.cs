@@ -1,6 +1,6 @@
 ﻿public class StageComponent : BaseComponent, IStageComponent
 {
-	public int Stage { get; protected set; }
+	public string Stage { get; protected set; }
 
-	public StageComponent(int stage) : base() => Stage = stage;
+	public StageComponent(string stage) : base() => Stage = stage;
 }

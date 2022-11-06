@@ -13,14 +13,14 @@ public abstract class IndexedTankService<T, U> : IIndexedTank<T, U>
 		CacheToRefresh = true;
 	}
 
-	public T Add(U itemId, T item)
+	public virtual T Add(U itemId, T item)
 	{
 		CacheToRefresh = Items.TryAdd(itemId, item);
 		return (item);
 	}
-	public void Remove(U itemId) => CacheToRefresh = Items.Remove(itemId);
-	public T Get(U itemid) => Items[itemid];
-	public IList<T> Get()
+	public virtual void Remove(U itemId) => CacheToRefresh = Items.Remove(itemId);
+	public virtual T Get(U itemid) => Items[itemid];
+	public virtual IList<T> Get()
 	{
 		if (CacheToRefresh)
 		{
@@ -30,7 +30,7 @@ public abstract class IndexedTankService<T, U> : IIndexedTank<T, U>
 
 		return (CachedList);
 	}
-	public int Count() => CachedList.Count;
+	public virtual int Count() => Get().Count;
 
 	public virtual IService Initialize() => this;
 }

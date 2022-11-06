@@ -7,7 +7,7 @@ public class ScriptableVillain : ScriptableEntity
 	[SerializeField] protected string Name;
 
 	[Header("Face 1 Attributes")]
-	[SerializeField] protected int Face1Stage;
+	[SerializeField] protected string Face1Stage;
 	[SerializeField] protected ScriptableValue Face1Scheme;
 	[SerializeField] protected ScriptableValue Face1Attack;
 	[SerializeField] protected ScriptableValue Face1HitPoints;
@@ -16,7 +16,7 @@ public class ScriptableVillain : ScriptableEntity
 	[SerializeField] protected Sprite Face1Image;
 
 	[Header("Face 2 Attributes")]
-	[SerializeField] protected int Face2Stage;
+	[SerializeField] protected string Face2Stage;
 	[SerializeField] protected ScriptableValue Face2Scheme;
 	[SerializeField] protected ScriptableValue Face2Attack;
 	[SerializeField] protected ScriptableValue Face2HitPoints;
@@ -28,7 +28,7 @@ public class ScriptableVillain : ScriptableEntity
 	protected ICardType VillainCardType;
 	protected IClassification VillainClassification;
 
-	protected IEntity CreateFace(IEntity parentEntity, int stage, int scheme, int attack, int hitPoints, ScriptableTrait[] traits, ScriptableCommand ability, Sprite image)
+	protected IEntity CreateFace(IEntity parentEntity, string stage, int scheme, int attack, int hitPoints, ScriptableTrait[] traits, ScriptableCommand ability, Sprite image)
 	{
 		IEntity face = new FaceEntity();
 		face.AddComponent<INameComponentProxy>(new NameComponentProxy(Name, image));

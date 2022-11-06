@@ -20,14 +20,12 @@ public class AttackTester : MonoBehaviour
 		ServiceLocator.Register<ICardTypeService>(new CardTypeService()).Initialize();
 		ServiceLocator.Register<ITraitService>(new TraitService()).Initialize();
 		ServiceLocator.Register<IEntityService>(new EntityService()).Initialize();
-		ServiceLocator.Register<IPlayerService>(new PlayerService()).Initialize(new Player(PlayerName), new Villain(VillainName));
+		ServiceLocator.Register<IPlayerService>(new PlayerService()).Initialize();
 		ServiceLocator.Register<IZoneService>(new ZoneService()).Initialize();
 
 		// Test scenario
 		IStackService stackService = ServiceLocator.Get<IStackService>();
-		IScenario scenario = new PlayerSetupScenario(
-			ServiceLocator.Get<IPlayerService>().Get(PlayerName), PlayerDeck,
-			ServiceLocator.Get<IPlayerService>().Get(VillainName), VillainDeck);
+		IScenario scenario = new PlayerSetupScenario(PlayerName, PlayerDeck, VillainName, VillainDeck);
 		for (int i = 0; i < scenario.Commands.Count; i++)
 		{
 			stackService.EnqueueCommand(scenario.Commands[i]);

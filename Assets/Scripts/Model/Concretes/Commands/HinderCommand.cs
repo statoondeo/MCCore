@@ -9,11 +9,12 @@
 		Value = value;
 	}
 
-	public string Type => throw new System.NotImplementedException();
+	public string Type => CommandType.NONE;
 	public bool Done { get; protected set; }
 	public bool CanExecute() => true;
 	public void Execute()
 	{
 		Card.GetActiveFaceComponent<IThreatComponentProxy>().AddThreat(Value);
+		Done = true;
 	}
 }

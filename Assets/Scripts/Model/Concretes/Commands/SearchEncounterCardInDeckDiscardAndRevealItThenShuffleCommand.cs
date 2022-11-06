@@ -1,17 +1,17 @@
-﻿public class SearhEncounterCardInDeckDiscardAndRevealItThenShuffleCommand : ICommand
+﻿public class SearchEncounterCardInDeckDiscardAndRevealItThenShuffleCommand : ICommand
 {
 	protected IPlayer Player;
 	protected string SearchedCardId;
 	protected string[] SearchedZoneId;
 
-	public SearhEncounterCardInDeckDiscardAndRevealItThenShuffleCommand(string searchedCardId, IPlayer player)
+	public SearchEncounterCardInDeckDiscardAndRevealItThenShuffleCommand(string searchedCardId, IPlayer player)
 	{
 		SearchedCardId = searchedCardId;
 		SearchedZoneId = new string[] { Zones.DISCARD, Zones.DECK };
 		Player = player;
 	}
 
-	public string Type => throw new System.NotImplementedException();
+	public string Type => CommandType.NONE;
 	public bool Done { get; protected set; }
 	public bool CanExecute() => true;
 	public void Execute()
@@ -32,5 +32,6 @@
 			faceContainer.ActiveFace.Face.GetComponent<IWhenRevealedComponentProxy>()?.WhenRevealed();
 		}
 		zoneService.Get((Zones.DECK, Player)).GetComponent<IShuffleComponentProxy>().Shuffle();
+		Done = true;
 	}
 }

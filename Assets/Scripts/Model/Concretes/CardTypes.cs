@@ -19,8 +19,7 @@
 	public static bool IsCardType(this ICardComponent cardComponent, ICardType cardType) => cardComponent.CardType.Equals(cardType);
 	public static bool IsOneOfCardType(this ICardComponent cardComponent, params ICardType[] cardTypes)
 	{
-		for (int i = 0; i < cardTypes.Length; i++)
-			if (cardComponent.IsCardType(cardTypes[i])) return (true);
+		for (int i = 0; i < cardTypes.Length; i++) if (cardComponent.IsCardType(cardTypes[i])) return (true);
 		return (false);
 	}
 }

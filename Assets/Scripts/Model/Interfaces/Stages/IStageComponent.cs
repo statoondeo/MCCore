@@ -1,4 +1,4 @@
 ﻿public interface IStageComponent : IComponent
 {
-	int Stage { get; }
+	string Stage { get; }
 }

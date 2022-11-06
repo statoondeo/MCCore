@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f61e672550568f429bbc184193949eb, type: 3}
-  m_Name: TheBreakIn1SetupCommand
+  m_Script: {fileID: 11500000, guid: 11b6c4fc5870eed4e8a0e4c64c846f30, type: 3}
+  m_Name: UndergroundDistribution1ASetup
   m_EditorClassIdentifier: 
-  SearchedCard: {fileID: 0}
+  Commands:
+  - {fileID: 11400000, guid: d1879204ed6764b40bb912de84792056, type: 2}
+  - {fileID: 11400000, guid: b699d36235f29b744a31810e9045f20d, type: 2}

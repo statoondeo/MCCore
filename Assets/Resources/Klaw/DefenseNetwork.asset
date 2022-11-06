@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895660d8a071293478b5faff2fc84a3a, type: 3}
+  m_Name: DefenseNetwork
+  m_EditorClassIdentifier: 
+  Id: 0fc90bc3-d3ad-412d-90ef-3100251e89c6
+  Name: Defense Network
+  Title: 
+  Unique: 0
+  Classification: {fileID: 11400000, guid: 6733f1a578ca544409977d700f9e1f3e, type: 2}
+  Threat: {fileID: 11400000, guid: 3c4eda002ec62454892adb7123a4c9c3, type: 2}
+  WhenRevealedAbility: {fileID: 11400000, guid: d763c64223005964b8d42ffc87dc7100, type: 2}
+  Image: {fileID: 0}
+  Back: {fileID: 11400000, guid: 84aecf8b723986045a2842151fa7c439, type: 2}

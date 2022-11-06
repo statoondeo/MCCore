@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 {
@@ -12,6 +13,12 @@ public class FaceContainerComponent : BaseComponent, IFaceContainerComponent
 	{
 		if (!CanFlipTo(faceName)) return;
 		ActiveFace = Faces[faceName];
+	}
+	public void FlipToNext()
+	{
+		IList<string> keyList = Faces.Keys.ToList();
+		int currentKeyIndex = keyList.IndexOf(ActiveFace.Name);
+		if (currentKeyIndex < (keyList.Count - 1)) FlipTo(keyList[currentKeyIndex + 1]);
 	}
 	public IFaceComponentProxy RegisterFace(IFaceComponentProxy face)
 	{
